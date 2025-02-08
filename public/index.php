@@ -1,0 +1,22 @@
+<?php
+
+require_once "../src/App/Core/Core.php";
+require_once "../src/App/Controller/HomeController.php";
+
+require_once "../src/App/Controller/ErroController.php";
+
+require_once '../vendor/autoload.php';
+
+$template = file_get_contents('../src/App/Template/template.html');
+
+ob_start(); 
+    $core = new Core;
+    $core->start($_GET);
+
+    $saida = ob_get_contents();
+
+ob_end_clean();
+
+$tplPronto = str_replace('{{template}}', $saida, $template);
+// se ele encontrar a string (1), quero que substitua o valor dela por (2), quando o assunto for template (3)
+echo $tplPronto; // mostra a tela do estrutura.html pela variável
