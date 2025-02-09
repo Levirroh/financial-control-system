@@ -9,9 +9,10 @@ submitButton.addEventListener('click', () => {
         let formData = {}; 
 
         inputs.forEach(input => {
-            formData[input.name] = input.value;
-
+            formData[input.name] = input.value;            
+            console.log(input.value);
         })
+        console.log(select);
     }
 
 })
