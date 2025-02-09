@@ -2,6 +2,7 @@ const submitButton = document.querySelector('#submit');
 const buttonValue = document.querySelector('#submit').value;
 
 submitButton.addEventListener('click', () => {
+    console.log("asasd");
     if (buttonValue === 'Cadastrar'){
         let inputs = document.querySelectorAll('.input');
         let select = document.querySelector('#select').value;
@@ -14,7 +15,7 @@ submitButton.addEventListener('click', () => {
         })
         console.log(select);
 
-        fetch (`Auth/create`, {
+        fetch ("auth/create", {
             method: "POST",
             headers: {
                 'Content-type': 'application/json',
