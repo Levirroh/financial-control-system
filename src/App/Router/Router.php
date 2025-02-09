@@ -30,6 +30,15 @@
             }
 
             $uri_info['controller'] = $controller;
+
+            if (class_exists($controller)){
+                if (!empty($uri[1])){
+                    $method = $uri[1];
+                }
+
+            }
+
+
             $uri_info['method'] = $method;
 
 
