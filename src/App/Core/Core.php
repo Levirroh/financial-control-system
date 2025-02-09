@@ -1,17 +1,14 @@
 <?php
-    class Core{
-        public function start(){
 
-            $acao = "index";
-            if (isset($urlGet['pagina'])) {// se a pagina existe
-                $controller = ucfirst($urlGet['pagina'].'Controller');
-            } else {
-                $controller = 'HomeController';
-            }
-            if (!class_exists($controller)) {
-                $controller = 'ErroController';
-            }
-            call_user_func_array(array(new $controller, $acao), array());
+    class Core{
+
+        public function start($url){
+
+            $uri_info = Router::router($url);
+
+            $controller = $uri_info['controller'];
+            $method = $uri_info['method'];
+
+            call_user_func_array(array(new $controller, $method), array());
         }
     }
-?>
