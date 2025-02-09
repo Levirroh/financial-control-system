@@ -5,16 +5,21 @@
         public static function router($url){
 
             if(empty($url)){
-                $url['url'] = 'error';
+                $url['url'] = 'Error';
             }
 
             $uri = explode('/', $url['url']);
 
             $controller = ucfirst($uri[0]) . 'Controller'; 
-            $method = isset($uri[1]) ? $uri[1] : 'index';
+
+            if($uri[0] === ''){
+                $controller = 'HomeController';
+            }
+            if($uri[0] === 'menu'){
+                $controller = 'HomeController';
+            }
 
             $uri_info['controller'] = $controller;
-            $uri_info['method'] = $method;
 
             return $uri_info;
         }

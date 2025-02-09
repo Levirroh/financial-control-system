@@ -7,7 +7,8 @@
             $uri_info = Router::router($url);
 
             $controller = $uri_info['controller'];
-            $method = $uri_info['method'];
+            $method = 'index';
+            var_dump($controller);
 
             call_user_func_array(array(new $controller, $method), array());
         }
