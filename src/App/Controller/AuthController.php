@@ -1,11 +1,11 @@
 <?php
-class HomeController{
-    public function index(){
+class AuthController{
+    public function register(){
         try {
-            $loader = new \Twig\Loader\FilesystemLoader('../src/App/View');
+            $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/auth');
             $twig = new \Twig\Environment($loader); 
 
-            $template = $twig->load('Home.html'); 
+            $template = $twig->load('Register.html'); 
 
 
             $parametros = array(); 
@@ -16,12 +16,12 @@ class HomeController{
             echo $e->getMessage();
         }
     }
-    public function menu(){
+    public function login(){
         try {
-            $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/user');
+            $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/auth');
             $twig = new \Twig\Environment($loader); 
 
-            $template = $twig->load('menu.html'); 
+            $template = $twig->load('Login.html'); 
 
 
             $parametros = array(); 
