@@ -1,6 +1,8 @@
 <?php
 
 require_once "../src/App/Core/Core.php";
+require_once "../src/App/Connection/Connection.php";
+
 
 require_once "../src/App/Controller/HomeController.php";
 require_once "../src/App/Controller/AuthController.php";
