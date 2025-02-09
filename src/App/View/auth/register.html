@@ -9,20 +9,23 @@
         <h1>Seja bem-vindo! Crie a sua conta</h1>
         <form method="POST">
             <p>Insira seu nome</p>
-            <input type="text" name="name">
+            <input type="text" name="name" class="input">
             <p>Insira seu email</p>
-            <input type="text" name="email">
+            <input type="text" name="email" class="input">
+            <p>Insira sua senha</p>
+            <input type="text" name="password" class="input">
             <p>Insira sua função</p>
-            <input type="text" name="funcao">
+            <input type="text" name="function" class="input">
             <p>Você é um ADMIN?</p>
-            <select name="admin">
-                <option value="0">SIM</option>
-                <option value="1">NÃO</option>
+            <select name="admin" id="select">
+                <option value="0">NÃO</option>
+                <option value="1">SIM</option>
             </select>
             <br>
-            <input type="submit" value="Cadastrar" name="register">
+            <input type="submit" value="Cadastrar" name="register" id="submit">
         </form>
     </div>
-<script src="../../../../public/scripts/register.js"></script>
+<script src="public/scripts/register.js"></script>
 </body>
 </html>
+

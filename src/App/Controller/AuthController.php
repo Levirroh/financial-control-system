@@ -32,4 +32,17 @@ class AuthController{
             echo $e->getMessage();
         }
     }
+    public function create(){
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $user = new User;
+        $user = new User();
+        $registerSuccess = $user->register($data);
+
+        if ($registerSuccess) {
+            echo json_encode(['success' => true, 'redirect' => '/login']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Erro ao cadastrar usuário']);
+        }
+    }
 }
