@@ -45,9 +45,30 @@ class AuthController{
         $registerSuccess = $user->register($data);
 
         if ($registerSuccess) {
-             echo json_encode(['success' => true, 'redirect' => 'menu']);
+             echo json_encode(['success' => true, 'redirect' => 'login']);
         } else {
              echo json_encode(['success' => false, 'message' => 'Erro ao cadastrar usuário']);
+        }
+    }
+
+
+
+    public function enter(){
+        header('Content-Type: application/json');
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        if (!$data) {
+            echo json_encode(['success' => false, 'message' => 'Dados inválidos recebidos']);
+            exit;
+        } 
+
+        $user = new User();
+        $registerSuccess = $user->enter($data);
+
+        if ($registerSuccess) {
+             echo json_encode(['success' => true, 'redirect' => 'menu']);
+        } else {
+             echo json_encode(['success' => false, 'message' => 'Erro ao entrar na conta!']);
         }
     }
 }

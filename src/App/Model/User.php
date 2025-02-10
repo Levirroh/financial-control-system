@@ -40,4 +40,60 @@
                 die('Erro ao executar a consulta: ' . $statement->error);
             }
         }
+
+        
+        public function login($info){
+
+            $conn = Connection::getConn();
+
+            if($conn->connect_error){
+                die('algo deu errado');
+            }
+            $name_user = $info['name'];
+            $password_user = $info['password']; 
+
+            
+
+            $query = "SELECT * FROM users WHERE name_user = ? OR email_user = ?
+            VALUES
+            (?, ?)";
+
+            $statement = $conn->prepare($query);
+
+            if ($statement === false) {
+                die('Erro ao preparar a consulta: ' . $conn->error);
+            }
+    
+            $statement->bind_param('ss', $name_user, $name_user);
+            
+            $statement->execute();
+
+            $result = $statement->get_result();
+
+            while($row = $result->fetch_object('user')){
+                $data['user'] = $row;
+            }
+
+            if ($data){
+                if ($password_user === $data['user']->password_user){
+                    $_SESSION['user'] = $data['user']->id;
+                    return;
+                } else {
+                    echo json_encode([
+                        'success' => false,
+                        'type' => 'password',
+                        'message' => 'Senha incorreta'
+                    ]);
+                    exit;
+                }
+            } else {
+
+                echo json_encode([
+                    'success' => false,
+                    'type' => 'email',
+                    'message' => 'E-mail não cadastrado'
+                ]);
+                exit;
+            }
+        }
     }

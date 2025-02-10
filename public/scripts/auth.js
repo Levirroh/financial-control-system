@@ -39,4 +39,39 @@ submitButton.addEventListener('click', (event) => {
         
     }
 
+
+
+
+    if (buttonValue === 'Login'){
+        let inputs = document.querySelectorAll('.input');
+
+        let formData = {}; 
+        inputs.forEach(input => {
+            formData[input.name] = input.value;            
+        })
+
+        fetch(`auth/enter`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: formData.name,
+                password: formData.password
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success){
+                window.location = data.redirect;
+            } else {
+                console.log(data.message);
+            }
+        })
+        .catch(error => {
+            console.log('Erro na requisição: ', error);
+        })
+        
+    }
+
 })
