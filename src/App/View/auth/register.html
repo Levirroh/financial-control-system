@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,23 +9,23 @@
         <h1>Seja bem-vindo! Crie a sua conta</h1>
         <form method="POST">
             <p>Insira seu nome</p>
-            <input type="text" name="name" class="input">
+            <input type="text" name="name" class="input" autocomplete="off">
             <p>Insira seu email</p>
-            <input type="text" name="email" class="input">
+            <input type="text" name="email" class="input" autocomplete="off">
             <p>Insira sua senha</p>
-            <input type="text" name="password" class="input">
+            <input type="text" name="password" class="input" autocomplete="off">
             <p>Insira sua função</p>
-            <input type="text" name="function" class="input">
+            <input type="text" name="function" class="input" autocomplete="off">
             <p>Você é um ADMIN?</p>
             <select name="admin" id="select">
-                <option name="0" value="0">NÃO</option>
+                <option name="0" value="0" selected>NÃO</option>
                 <option name="1" value="1">SIM</option>
             </select>
             <br>
-            <input type="submit" value="Cadastrar" name="register" id="submit">
+            <input type="submit" value="Cadastrar" id="submit">
         </form>
     </div>
-<script src="public/scripts/register.js"></script>
+<script type="module" src="public/scripts/register.js"></script>
 </body>
 </html>
 

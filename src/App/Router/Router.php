@@ -15,7 +15,7 @@
             if($uri[0] === '' || $uri[0] === 'Home'){
                 $controller = 'HomeController';
                 $method = 'index';
-            } else if($uri[0] == 'menu'){
+            } else if($uri[0] === 'menu'){
                 $controller = 'HomeController';
                 $method = 'menu';
             } else if($uri[0] === 'register'){
@@ -24,6 +24,9 @@
             } else if($uri[0] === 'login'){
                 $controller = 'AuthController';
                 $method = 'login';
+            } else if($uri[0] === 'auth'){
+                $controller = 'AuthController';
+                $method = $uri[1] ?? 'index';
             } else{
                 $method = 'index';
             }

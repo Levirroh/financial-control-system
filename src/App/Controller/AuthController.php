@@ -33,16 +33,21 @@ class AuthController{
         }
     }
     public function create(){
+
         $data = json_decode(file_get_contents("php://input"), true);
 
-        // $user = new User;
-        // $user = new User();
-        // $registerSuccess = $user->register($data);
+        if (!$data) {
+            echo json_encode(['success' => false, 'message' => 'Dados inválidos recebidos']);
+            exit;
+        } // verifica se são realmente JSON
 
-        // if ($registerSuccess) {
-        //     echo json_encode(['success' => true, 'redirect' => '/login']);
-        // } else {
-        //     echo json_encode(['success' => false, 'message' => 'Erro ao cadastrar usuário']);
-        // }
+        $user = new User();
+        $registerSuccess = $user->register($data);
+
+        if ($registerSuccess) {
+             echo json_encode(['success' => true, 'redirect' => 'menu']);
+        } else {
+             echo json_encode(['success' => false, 'message' => 'Erro ao cadastrar usuário']);
+        }
     }
 }

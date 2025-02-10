@@ -1,22 +1,19 @@
 const submitButton = document.querySelector('#submit');
 const buttonValue = document.querySelector('#submit').value;
 
-submitButton.addEventListener('click', () => {
-    console.log("asasd");
+submitButton.addEventListener('click', (event) => {
+    event.preventDefault(); // impede de recarregar a página antes de fazer todas as ações do JS.
     if (buttonValue === 'Cadastrar'){
         let inputs = document.querySelectorAll('.input');
         let select = document.querySelector('#select').value;
 
         let formData = {}; 
-
         inputs.forEach(input => {
             formData[input.name] = input.value;            
-            console.log(input.value);
         })
-        console.log(select);
 
-        fetch ("auth/create", {
-            method: "POST",
+        fetch(`auth/create`, {
+            method: 'POST',
             headers: {
                 'Content-type': 'application/json',
             },
@@ -24,8 +21,8 @@ submitButton.addEventListener('click', () => {
                 name: formData.name,
                 email: formData.email,
                 password: formData.password,
-                admin: formData.admin,
-                func: formData.function,
+                function: formData.function,
+                admin: select
             })
         })
         .then(response => response.json())
