@@ -74,7 +74,10 @@
 
             if ($data){
                 if ($password_user === $data['user']->password_user){
-                    $_SESSION['user'] = $data['user']->id_user;
+                    $_SESSION['id'] = $data['user']->id_user;
+                    $_SESSION['name'] = $data['user']->name_user;
+                    $_SESSION['email'] = $data['user']->email_user;
+                    $_SESSION['function'] = $data['user']->function_user;
                     return true;
                 } else {
                     echo json_encode([

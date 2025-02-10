@@ -23,10 +23,12 @@ class HomeController{
 
             $template = $twig->load('menu.html'); 
 
+            $user['id'] = $_SESSION['id'];
+            $user['name'] = $_SESSION['name'];
+            $user['email'] = $_SESSION['email'];
+            $user['function'] = $_SESSION['function'];
 
-            $parametros = array(); 
-
-            $conteudo = $template->render($parametros);
+            $conteudo = $template->render($user);
             echo $conteudo;
         } catch (Exception $e) {
             echo $e->getMessage();

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once "../src/App/Core/Core.php";
 require_once "../src/App/Connection/Connection.php";
 
