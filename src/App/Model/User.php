@@ -41,7 +41,7 @@
             }
         }
 
-        
+
         public function login($info){
 
             $conn = Connection::getConn();
@@ -54,9 +54,7 @@
 
             
 
-            $query = "SELECT * FROM users WHERE name_user = ? OR email_user = ?
-            VALUES
-            (?, ?)";
+            $query = "SELECT * FROM users WHERE name_user = ? OR email_user = ?";
 
             $statement = $conn->prepare($query);
 
@@ -76,8 +74,8 @@
 
             if ($data){
                 if ($password_user === $data['user']->password_user){
-                    $_SESSION['user'] = $data['user']->id;
-                    return;
+                    $_SESSION['user'] = $data['user']->id_user;
+                    return true;
                 } else {
                     echo json_encode([
                         'success' => false,
@@ -90,8 +88,8 @@
 
                 echo json_encode([
                     'success' => false,
-                    'type' => 'email',
-                    'message' => 'E-mail não cadastrado'
+                    'type' => 'text',
+                    'message' => 'Conta não cadastrada'
                 ]);
                 exit;
             }

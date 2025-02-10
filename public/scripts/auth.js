@@ -15,7 +15,7 @@ submitButton.addEventListener('click', (event) => {
         fetch(`auth/create`, {
             method: 'POST',
             headers: {
-                'Content-type': 'application/json',
+                'Content-type': 'application/json'
             },
             body: JSON.stringify({
                 name: formData.name,
@@ -37,23 +37,18 @@ submitButton.addEventListener('click', (event) => {
             console.log('Erro na requisição: ', error);
         })
         
-    }
-
-
-
-
-    if (buttonValue === 'Login'){
-        let inputs = document.querySelectorAll('.input');
+    } else{
+        let inputs = document.querySelectorAll('.input_login');
 
         let formData = {}; 
         inputs.forEach(input => {
-            formData[input.name] = input.value;            
+            formData[input.name] = input.value;
         })
 
         fetch(`auth/enter`, {
             method: 'POST',
             headers: {
-                'Content-type': 'application/json',
+                'Content-type': 'application/json'
             },
             body: JSON.stringify({
                 name: formData.name,
