@@ -113,21 +113,24 @@ class AdminController{
             echo $e->getMessage();
         }
     }
-    public function update($id){
-        try {
-            $employeeId = User::selectById($id);
+    public function update(){
+        
+        $url = $_GET['url'];
 
-            $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/user');
+        $uri = explode('/', $url);
+
+        $id = $uri[2];
+
+        $_SESSION['employee'] = $id;
+
+        try {
+
+            $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/admin');
             $twig = new \Twig\Environment($loader); 
             $template = $twig->load('update_user.html'); 
 
-            $user['id'] = $_SESSION['id'];
-            $user['name'] = $_SESSION['name'];
-            $user['email'] = $_SESSION['email'];
-            $user['function'] = $_SESSION['function'];
-            $user['isAdmin'] = $_SESSION['isAdmin'];
-
-            $conteudo = $template->render($user);
+            $employee_info['user'] = User::selectById($id);
+            $conteudo = $template->render($employee_info);
             echo $conteudo;
         } catch (Exception $e) {
             echo $e->getMessage();

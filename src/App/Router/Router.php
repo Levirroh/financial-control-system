@@ -51,9 +51,13 @@
             if (class_exists($controller)){
                 if (!empty($uri[1])){
                     $method = $uri[1];
-                }
+                    
+                    if (!empty($uri[2])){
+                        $id = $uri[2];
+                        $uri_info['id'] = $id;
+                    }
+                } 
             }
-
 
             $uri_info['method'] = $method;
 

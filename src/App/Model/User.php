@@ -120,24 +120,24 @@
             return $resultado;
         }
         public static function selectById($id){
+
             $con = Connection::getConn();
 
             $sql = "SELECT * FROM users WHERE id_user = ?";
             $sql = $con->prepare($sql);
-            $sql->bind_param('i', $id_user);
+            $sql->bind_param('i', $id);
             $sql->execute();
     
             $result = $sql->get_result();
 
-            $resultado = [];
             while ($row = $result->fetch_assoc()) {
-                $resultado[] = (object) $row; 
+                $data = $row; 
             }
 
-            if (!$resultado){
+            if (!$data){
                 throw new Exception("Não foi encontrado nenhum usuário.");
             } 
         
-            return $resultado;
+            return $data;
         }
     }
