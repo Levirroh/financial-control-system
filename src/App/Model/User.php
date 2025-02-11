@@ -99,4 +99,45 @@
                 exit;
             }
         }
+        public static function allUsers(){
+            $con = Connection::getConn();
+
+            $sql = "SELECT * FROM users ORDER BY id_user";
+            $sql = $con->prepare($sql);
+            $sql->execute();
+    
+            $result = $sql->get_result();
+
+            $resultado = [];
+            while ($row = $result->fetch_assoc()) {
+                $resultado[] = (object) $row; 
+            }
+
+            if (!$resultado){
+                throw new Exception("Não foi encontrado nenhum usuário.");
+            } 
+        
+            return $resultado;
+        }
+        public static function selectById($id){
+            $con = Connection::getConn();
+
+            $sql = "SELECT * FROM users WHERE id_user = ?";
+            $sql = $con->prepare($sql);
+            $sql->bind_param('i', $id_user);
+            $sql->execute();
+    
+            $result = $sql->get_result();
+
+            $resultado = [];
+            while ($row = $result->fetch_assoc()) {
+                $resultado[] = (object) $row; 
+            }
+
+            if (!$resultado){
+                throw new Exception("Não foi encontrado nenhum usuário.");
+            } 
+        
+            return $resultado;
+        }
     }

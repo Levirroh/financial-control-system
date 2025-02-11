@@ -5,8 +5,32 @@
     <title>Document</title>
 </head>
 <body>
-    <p>Employees</p> 
-    <a href="create_employee">Cadastrar Funcionário</a>   
+    <a href="create_employee">Cadastrar Funcionário</a>
+    <h1>Usuários</h1>
+    <div>
+        <table border="2">
+            <tr>
+                <th>ID do usuário</th>
+                <th>Nome:</th>
+                <th>Email:</th>
+                <th>Função:</th>
+                <th>Admin:</th>
+                <th>Editar:</th>
+                <th>Excluir:</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <th>{{user.id_user}}</th>
+                    <th>{{user.name_user}}</th>
+                    <th>{{user.email_user}}</th>
+                    <th>{{user.function_user}}</th>
+                    <th>{{user.isAdmin}}</th>
+                    <th><a href="admin/update/{{user.id_user}}">Editar</a></th>
+                    <th><a href="admin/delete/{{user.id_user}}">Excluir</a></th>
+                </tr>
+            {% endfor %} 
+        </table>
+    </div>  
 </body>
 </html>
 
