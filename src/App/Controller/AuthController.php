@@ -57,7 +57,7 @@ class AuthController{
         if (!$data) {
             echo json_encode(['success' => false, 'message' => 'Dados inválidos recebidos']);
             exit;
-        } // verifica se são realmente JSON
+        }
 
         $user = new User();
         $registerSuccess = $user->register($data);
