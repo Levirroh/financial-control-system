@@ -27,9 +27,21 @@
             } else if($uri[0] === 'auth'){
                 $controller = 'AuthController';
                 $method = $uri[1] ?? 'index';
-            } else if($uri[0] === 'admin'){
+            } else if($uri[0] === 'financial'){
                 $controller = 'AdminController';
-                $method = $uri[1] ?? 'index';
+                $method = 'financial';
+            } else if($uri[0] === 'employees'){
+                $controller = 'AdminController';
+                $method = 'employees';
+            } else if($uri[0] === 'requests'){
+                $controller = 'AdminController';
+                $method = 'requests';
+            } else if($uri[0] === 'stock_admin'){
+                $controller = 'AdminController';
+                $method = 'stock';
+            } else if($uri[0] === 'create_employee'){
+                $controller = 'AdminController';
+                $method = 'create_employee';
             } else{
                 $method = 'index';
             }
@@ -40,7 +52,6 @@
                 if (!empty($uri[1])){
                     $method = $uri[1];
                 }
-
             }
 
 
