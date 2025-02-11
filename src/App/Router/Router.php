@@ -27,6 +27,9 @@
             } else if($uri[0] === 'auth'){
                 $controller = 'AuthController';
                 $method = $uri[1] ?? 'index';
+            } else if($uri[0] === 'admin'){
+                $controller = 'AdminController';
+                $method = $uri[1] ?? 'index';
             } else{
                 $method = 'index';
             }

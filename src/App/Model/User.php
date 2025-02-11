@@ -54,7 +54,7 @@
 
             
 
-            $query = "SELECT * FROM users WHERE name_user = ? OR email_user = ?";
+            $query = "SELECT * FROM users WHERE name_user = ?";
 
             $statement = $conn->prepare($query);
 
@@ -62,7 +62,7 @@
                 die('Erro ao preparar a consulta: ' . $conn->error);
             }
     
-            $statement->bind_param('ss', $name_user, $name_user);
+            $statement->bind_param('s', $name_user);
             
             $statement->execute();
 
@@ -78,6 +78,8 @@
                     $_SESSION['name'] = $data['user']->name_user;
                     $_SESSION['email'] = $data['user']->email_user;
                     $_SESSION['function'] = $data['user']->function_user;
+                    $_SESSION['isAdmin'] = $data['user']->isAdmin;
+
                     return true;
                 } else {
                     echo json_encode([

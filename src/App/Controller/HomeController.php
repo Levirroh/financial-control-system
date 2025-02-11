@@ -27,6 +27,8 @@ class HomeController{
             $user['name'] = $_SESSION['name'];
             $user['email'] = $_SESSION['email'];
             $user['function'] = $_SESSION['function'];
+            $user['isAdmin'] = $_SESSION['isAdmin'];
+
 
             $conteudo = $template->render($user);
             echo $conteudo;

@@ -9,6 +9,8 @@ require_once "../src/App/Connection/Connection.php";
 require_once "../src/App/Controller/HomeController.php";
 require_once "../src/App/Controller/AuthController.php";
 require_once "../src/App/Controller/ErrorController.php";
+require_once "../src/App/Controller/AdminController.php";
+
 
 require_once "../src/App/Model/User.php";
 

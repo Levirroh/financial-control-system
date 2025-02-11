@@ -66,7 +66,11 @@ class AuthController{
         $user = new User();
         $registerSuccess = $user->login($data);
         if ($registerSuccess === true) {
-             echo json_encode(['success' => true, 'redirect' => 'menu']);
+            if ($_SESSION['isAdmin']){
+                echo json_encode(['success' => true, 'redirect' => 'admin']);
+            } else {
+                echo json_encode(['success' => true, 'redirect' => 'menu']);
+            }
         } else {
              echo json_encode(['success' => false, 'message' => 'Erro ao entrar na conta!']);
         }
