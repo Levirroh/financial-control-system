@@ -140,4 +140,28 @@
         
             return $data;
         }
+        public static function update_employee($data){
+
+            $con = Connection::getConn();
+            
+            $name = $data['name'];
+            $email = $data['email'];
+            $password = $data['password']; 
+            $function = $data['function'];
+            $isAdmin = (int) $data['admin'];
+
+            $sql = "UPDATE user SET user_name = ? user_email = ? function_user = ? password_user = ? isAdmin = ?";
+            $sql = $con->prepare($sql);
+            if ($sql === false) {
+                die('Erro ao preparar a consulta: ' . $conn->error);
+            }
+            $sql->bind_param('ssssi', $name, $email, $function, $password, $isAdmin);
+            $sql->execute();
+
+            if ($statement->execute()) {
+                return true;
+            } else {
+                die('Erro ao executar a consulta: ' . $statement->error);
+            }
+        }
     }

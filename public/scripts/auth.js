@@ -105,4 +105,40 @@ submitButton.addEventListener('click', (event) => {
         })
         
     } 
+    if (buttonValue == 'Alterar'){
+        let inputs = document.querySelectorAll('.input');
+        let select = document.querySelector('#select').value;
+
+        let formData = {}; 
+        inputs.forEach(input => {
+            formData[input.name] = input.value;
+            console.log(input.value);            
+        })
+
+        fetch(`auth/update_employee`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: formData.name,
+                email: formData.email,
+                password: formData.password,
+                function: formData.function,
+                admin: select
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success){
+                window.location = data.redirect;
+            } else {
+                console.log(data.message);
+            }
+        })
+        .catch(error => {
+            console.log('Erro na requisição: ', error);
+        })
+        
+    } 
 })
