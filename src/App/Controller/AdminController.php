@@ -123,17 +123,14 @@ class AdminController{
 
         $_SESSION['employee'] = $id;
 
-        try {
+        $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/admin');
+        $twig = new \Twig\Environment($loader); 
+        $template = $twig->load('update_user.html'); 
 
-            $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/admin');
-            $twig = new \Twig\Environment($loader); 
-            $template = $twig->load('update_user.html'); 
+        $employee_info['user'] = User::selectById($id);
 
-            $employee_info['user'] = User::selectById($id);
-            $conteudo = $template->render($employee_info);
-            echo $conteudo;
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
+        $conteudo = $template->render($employee_info);
+        echo $conteudo;
+        
     }
 }

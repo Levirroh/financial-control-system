@@ -76,14 +76,14 @@ class AuthController{
             echo json_encode(['success' => false, 'message' => 'Dados inválidos recebidos']);
             exit;
         }
+        var_dump($data);
 
-        $user = new User();
-        $registerSuccess = $user->update($data);
+        $registerSuccess = User::update($data);
 
         if ($registerSuccess) {
              echo json_encode(['success' => true, 'redirect' => 'employees']);
         } else {
-             echo json_encode(['success' => false, 'message' => 'Erro ao cadastrar usuário']);
+             echo json_encode(['success' => false, 'message' => 'Erro ao alterar usuário']);
         }
     }
     public function enter(){
@@ -94,7 +94,6 @@ class AuthController{
             echo json_encode(['success' => false, 'message' => 'Dados inválidos recebidos']);
             exit;
         } 
-
 
         $user = new User();
         $registerSuccess = $user->login($data);

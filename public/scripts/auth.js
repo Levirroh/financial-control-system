@@ -76,7 +76,6 @@ submitButton.addEventListener('click', (event) => {
         let formData = {}; 
         inputs.forEach(input => {
             formData[input.name] = input.value;
-            console.log(input.value);            
         })
 
         fetch(`auth/create_employee`, {
@@ -103,24 +102,25 @@ submitButton.addEventListener('click', (event) => {
         .catch(error => {
             console.log('Erro na requisição: ', error);
         })
-        
-    } 
-    if (buttonValue == 'Alterar'){
+    }
+    if (buttonValue === 'Alterar') {
         let inputs = document.querySelectorAll('.input');
         let select = document.querySelector('#select').value;
 
         let formData = {}; 
         inputs.forEach(input => {
             formData[input.name] = input.value;
-            console.log(input.value);            
+            console.log(input.name);
+            console.log(input.value);
         })
-
+        console.log(formData.id);
         fetch(`auth/update_employee`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
             },
             body: JSON.stringify({
+                id: formData.id,
                 name: formData.name,
                 email: formData.email,
                 password: formData.password,

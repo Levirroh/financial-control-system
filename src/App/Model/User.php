@@ -130,6 +130,8 @@
     
             $result = $sql->get_result();
 
+            $data = [];
+
             while ($row = $result->fetch_assoc()) {
                 $data = $row; 
             }
@@ -140,28 +142,27 @@
         
             return $data;
         }
-        public static function update_employee($data){
+        public static function update($data){
 
             $con = Connection::getConn();
-            
+            $id = $data['id'];            
             $name = $data['name'];
             $email = $data['email'];
             $password = $data['password']; 
             $function = $data['function'];
             $isAdmin = (int) $data['admin'];
 
-            $sql = "UPDATE user SET user_name = ? user_email = ? function_user = ? password_user = ? isAdmin = ?";
+            $sql = "UPDATE users SET name_user = ?, email_user = ?, function_user = ?, password_user = ?, isAdmin = ? WHERE id_user = ?";
             $sql = $con->prepare($sql);
             if ($sql === false) {
-                die('Erro ao preparar a consulta: ' . $conn->error);
+                die('Erro ao preparar a consulta: ' . $con->error);
             }
-            $sql->bind_param('ssssi', $name, $email, $function, $password, $isAdmin);
-            $sql->execute();
+            $sql->bind_param('ssssii', $name, $email, $function, $password, $isAdmin, $id);
 
-            if ($statement->execute()) {
+            if ($sql->execute()) {
                 return true;
             } else {
-                die('Erro ao executar a consulta: ' . $statement->error);
+                die('Erro ao executar a consulta: ' . $sql->error);
             }
         }
     }
