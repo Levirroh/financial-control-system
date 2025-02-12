@@ -165,4 +165,22 @@
                 die('Erro ao executar a consulta: ' . $sql->error);
             }
         }
+        public static function delete_user($data){
+
+            $con = Connection::getConn();
+            $id = $data;            
+
+            $sql = "DELETE FROM users WHERE id_user = ?";
+            $sql = $con->prepare($sql);
+            if ($sql === false) {
+                die('Erro ao preparar a consulta: ' . $con->error);
+            }
+            $sql->bind_param('i',$id);
+
+            if ($sql->execute()) {
+                return true;
+            } else {
+                die('Erro ao executar a consulta: ' . $sql->error);
+            }
+        }
     }

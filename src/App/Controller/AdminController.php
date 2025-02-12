@@ -133,4 +133,22 @@ class AdminController{
         echo $conteudo;
         
     }
+    public function delete(){
+        
+        $url = $_GET['url'];
+
+        $uri = explode('/', $url);
+
+        $id = $uri[2];
+
+        $delete = User::delete_user($id);
+
+        if ($delete === true) {
+            header('Location: /financial-control-system/employees');
+        } else{
+            echo "algo deu errado!";
+        }
+
+        
+    }
 }
