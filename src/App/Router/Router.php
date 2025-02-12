@@ -46,7 +46,6 @@
                 $method = 'index';
             }
 
-
             if (class_exists($controller)){
                 if (!empty($uri[1])){
                     $method = $uri[1];

@@ -110,8 +110,6 @@ submitButton.addEventListener('click', (event) => {
         let formData = {}; 
         inputs.forEach(input => {
             formData[input.name] = input.value;
-            console.log(input.name);
-            console.log(input.value);
         })
         console.log(formData.id);
         fetch(`auth/update_employee`, {

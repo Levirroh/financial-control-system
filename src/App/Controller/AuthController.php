@@ -76,12 +76,11 @@ class AuthController{
             echo json_encode(['success' => false, 'message' => 'Dados inválidos recebidos']);
             exit;
         }
-        var_dump($data);
 
         $registerSuccess = User::update($data);
 
         if ($registerSuccess) {
-             echo json_encode(['success' => true, 'redirect' => 'employees']);
+             echo json_encode(['success' => true, 'redirect' => '/financial-control-system/employees']);
         } else {
              echo json_encode(['success' => false, 'message' => 'Erro ao alterar usuário']);
         }
