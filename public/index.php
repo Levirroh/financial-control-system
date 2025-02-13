@@ -13,6 +13,8 @@ require_once "../src/App/Controller/AdminController.php";
 
 
 require_once "../src/App/Model/User.php";
+require_once "../src/App/Model/Stock.php";
+
 
 
 require_once '../vendor/autoload.php';

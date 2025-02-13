@@ -42,6 +42,9 @@
             } else if($uri[0] === 'create_employee'){
                 $controller = 'AdminController';
                 $method = 'create_employee';
+            } else if($uri[0] === 'add_item'){
+                $controller = 'AdminController';
+                $method = 'add_item';
             } else{
                 $method = 'index';
             }

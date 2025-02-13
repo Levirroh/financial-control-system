@@ -6,5 +6,33 @@
 </head>
 <body>
     <a href="admin">Voltar</a>
+    <a href="add_item">Adicionar item.</a>
+    <h1>Estoque</h1>
+    <div>
+        <table border="2">
+            <tr>
+                <th>Id do produto:</th>
+                <th>Nome:</th>
+                <th>Código:</th>
+                <th>Preço:</th>
+                <th>Oferta:</th>
+                <th>Categoria:</th>
+                <th>Editar:</th>
+                <th>Excluir:</th>
+            </tr>
+            {% for item in items %}
+                <tr>
+                    <th>{{item.id_item}}</th>
+                    <th>{{item.name_item}}</th>
+                    <th>{{item.code_item}}</th>
+                    <th>{{item.price_item}}</th>
+                    <th>{{item.sale_item}}</th>
+                    <th>{{item.category_item}}</th>
+                    <th><a href="admin/update/{{item.id_item}}">Editar</a></th>
+                    <th><a href="admin/delete/{{item.id_item}}">Excluir</a></th>
+                </tr>
+            {% endfor %} 
+        </table>
+    </div>  
 </body>
 </html>
