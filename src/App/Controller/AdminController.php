@@ -136,8 +136,6 @@ class AdminController{
 
         $id = $uri[2];
 
-        $_SESSION['employee'] = $id;
-
         $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/admin');
         $twig = new \Twig\Environment($loader); 
         $template = $twig->load('update_item.html'); 
@@ -146,6 +144,23 @@ class AdminController{
 
         $conteudo = $template->render($item_info);
         echo $conteudo;
+        
+    }
+    public function delete_item(){
+        
+        $url = $_GET['url'];
+
+        $uri = explode('/', $url);
+
+        $id = $uri[2];
+
+        $delete = Stock::delete_item($id);
+
+        if ($delete === true) {
+            header('Location: /financial-control-system/stock_admin');
+        } else{
+            echo "algo deu errado!";
+        }
         
     }
     public function stock(){
