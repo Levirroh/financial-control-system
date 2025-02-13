@@ -51,4 +51,50 @@
                 die('Erro ao executar a consulta: ' . $statement->error);
             }
         }
+        public static function selectById($id){
+
+            $con = Connection::getConn();
+
+            $sql = "SELECT * FROM stock WHERE id_item = ?";
+            $sql = $con->prepare($sql);
+            $sql->bind_param('i', $id);
+            $sql->execute();
+    
+            $result = $sql->get_result();
+
+            $data = [];
+
+            while ($row = $result->fetch_assoc()) {
+                $data = $row; 
+            }
+
+            if (!$data){
+                throw new Exception("Não foi encontrado nenhum usuário.");
+            } 
+        
+            return $data;
+        }
+        public static function update($data){
+
+            $con = Connection::getConn();
+            $id = $data['id'];            
+            $name = $data['name'];
+            $category = $data['category'];
+            $price = $data['price']; 
+            $code = $data['code'];
+            $sale = (int) $data['sale'];
+
+            $sql = "UPDATE stock SET name_item = ?, category_item = ?, code_item = ?, price_item = ?, sale_item = ? WHERE id_item = ?";
+            $sql = $con->prepare($sql);
+            if ($sql === false) {
+                die('Erro ao preparar a consulta: ' . $con->error);
+            }
+            $sql->bind_param('sssiii', $name, $category, $code, $price, $sale, $id);
+
+            if ($sql->execute()) {
+                return true;
+            } else {
+                die('Erro ao executar a consulta: ' . $sql->error);
+            }
+        }
     }

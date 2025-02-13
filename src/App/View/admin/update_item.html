@@ -1,0 +1,38 @@
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+            <a href="/financial-control-system/stock_admin">voltar</a>
+            <h1>Adicione um item</h1>
+            <form method="POST">
+                <p>Nome do item:</p>
+                <input type="text" name="name" class="input" autocomplete="off" value="{{item.name_item}}">
+                <p>Categoria do Item:</p>
+                <input type="text" name="category" class="input" autocomplete="off" value="{{item.category_item}}">
+                <p>Preço do Item:</p>
+                <input type="text" name="price" class="input" autocomplete="off" value="{{item.price_item}}">
+
+
+                <input type="hidden" name="id" value="{{item.id_item}}" class="input">
+
+                <p>Código do Item:</p>
+                <input type="text" name="code" class="input" autocomplete="off" value="{{item.code_item}}">
+                <p>O item está em Oferta?</p>
+                <select name="sale" id="select">
+                    <option value="{{item.sale_item}}">{{item.sale_item}}</option>
+                    <option name="0" value="0" selected>NÃO</option>
+                    <option name="1" value="1">SIM</option>
+                </select>
+                <br>
+                <input type="submit" value="Alterar" id="submit">
+            </form>
+        </div>
+    <script type="module" src="/financial-control-system/public/scripts/stock.js"></script>
+    </body>
+    </html>
+    
+    

@@ -38,5 +38,40 @@ submitButton.addEventListener('click', (event) => {
             console.log('Erro na requisição: ', error);
         })
     }
+    if (buttonValue === 'Alterar'){
+        let inputs = document.querySelectorAll('.input');
+        let select = document.querySelector('#select').value;
+
+        let formData = {}; 
+        inputs.forEach(input => {
+            formData[input.name] = input.value;
+        })
+        console.log(formData.id);
+        fetch(`auth/update_item`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: formData.id,
+                name: formData.name,
+                category: formData.category,
+                price: formData.price,
+                code: formData.code,
+                sale: select
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success){
+                window.location = data.redirect;
+            } else {
+                console.log(data.message);
+            }
+        })
+        .catch(error => {
+            console.log('Erro na requisição: ', error);
+        })
+    }
        
 })

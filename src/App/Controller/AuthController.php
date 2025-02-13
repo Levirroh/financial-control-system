@@ -85,6 +85,23 @@ class AuthController{
              echo json_encode(['success' => false, 'message' => 'Erro ao alterar usuário']);
         }
     }
+    public function update_item(){
+
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        if (!$data) {
+            echo json_encode(['success' => false, 'message' => 'Dados inválidos recebidos']);
+            exit;
+        }
+
+        $registerSuccess = Stock::update($data);
+
+        if ($registerSuccess) {
+             echo json_encode(['success' => true, 'redirect' => '/financial-control-system/stock_admin']);
+        } else {
+             echo json_encode(['success' => false, 'message' => 'Erro ao alterar item']);
+        }
+    }
     public function enter(){
         header('Content-Type: application/json');
         $data = json_decode(file_get_contents("php://input"), true);
