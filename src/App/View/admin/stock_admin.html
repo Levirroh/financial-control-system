@@ -19,6 +19,7 @@
                 <th>Categoria:</th>
                 <th>Editar:</th>
                 <th>Excluir:</th>
+                <th>Quantidade:</th>
             </tr>
             {% for item in item %}
                 <tr>
@@ -30,6 +31,7 @@
                     <th>{{item.category_item}}</th>
                     <th><a href="admin/update_item/{{item.id_item}}">Editar</a></th>
                     <th><a href="admin/delete_item/{{item.id_item}}">Excluir</a></th>
+                    <th>{{item.quantity_item}}</th>
                 </tr>
             {% endfor %} 
         </table>

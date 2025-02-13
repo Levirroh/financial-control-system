@@ -5,6 +5,32 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="admin">voltar</a>
+    <a href="menu">Voltar</a>
+    <a href="request">Fazer pedido.</a>
+    <h1>Estoque</h1>
+    <div>
+        <table border="2">
+            <tr>
+                <th>Id do produto:</th>
+                <th>Nome:</th>
+                <th>Código:</th>
+                <th>Preço:</th>
+                <th>Oferta:</th>
+                <th>Categoria:</th>
+                <th>Quantidade:</th>
+            </tr>
+            {% for item in item %}
+                <tr>
+                    <th>{{item.id_item}}</th>
+                    <th>{{item.name_item}}</th>
+                    <th>{{item.code_item}}</th>
+                    <th>{{item.price_item}}</th>
+                    <th>{{item.sale_item}}</th>
+                    <th>{{item.category_item}}</th>
+                    <th>{{item.quantity_item}}</th>
+                </tr>
+            {% endfor %} 
+        </table>
+    </div>  
 </body>
 </html>

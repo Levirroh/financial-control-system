@@ -38,18 +38,29 @@ class HomeController{
     }
     public function stock(){
         try {
-            $user['id'] = $_SESSION['id'];
-            $user['name'] = $_SESSION['name'];
-            $user['email'] = $_SESSION['email'];
-            $user['function'] = $_SESSION['function'];
-            $user['isAdmin'] = $_SESSION['isAdmin'];
-                
             $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/user');
             $twig = new \Twig\Environment($loader); 
-            $template = $twig->load('stock.html'); 
-            
 
-            $conteudo = $template->render($user);
+            $template = $twig->load('stock.html'); 
+
+            $item['item'] = Stock::selectAll();
+
+            $conteudo = $template->render($item);
+            echo $conteudo;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+    public function request(){
+        try {
+            $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/user');
+            $twig = new \Twig\Environment($loader); 
+
+            $template = $twig->load('request.html'); 
+
+            $item['item'] = Stock::selectAll();
+
+            $conteudo = $template->render($item);
             echo $conteudo;
         } catch (Exception $e) {
             echo $e->getMessage();
