@@ -28,5 +28,3 @@ CREATE TABLE requests(
     status_request ENUM ("Aprovado", "Recusado", "Não visto")
 );
 
-
-SELECT * FROM requests;
