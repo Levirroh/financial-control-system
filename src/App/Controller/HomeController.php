@@ -57,16 +57,14 @@ class HomeController{
             $twig = new \Twig\Environment($loader); 
 
             $template = $twig->load('request.html'); 
-            
+
             $user['id'] = $_SESSION['id'];
             $user['name'] = $_SESSION['name'];
             $user['email'] = $_SESSION['email'];
             $user['function'] = $_SESSION['function'];
             $user['isAdmin'] = $_SESSION['isAdmin'];
 
-            $item['item'] = Stock::selectAll();
-
-            $conteudo = $template->render($item);
+            $conteudo = $template->render($user);
             echo $conteudo;
         } catch (Exception $e) {
             echo $e->getMessage();

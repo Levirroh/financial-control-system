@@ -122,13 +122,14 @@
             $name = $data['name'];
             $category = $data['category'];
             $code = $data['code'];
+            $status = "Não visto";
 
-            $sql = "INSERT INTO requests (name_request, code_request, category_request, fk_user) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO requests (name_request, code_request, category_request, fk_user, status_request) VALUES (?, ?, ?, ?, ?)";
             $sql = $con->prepare($sql);
             if ($sql === false) {
                 die('Erro ao preparar a consulta: ' . $con->error);
             }
-            $sql->bind_param('sssi', $name, $code, $category, $id);
+            $sql->bind_param('sssis', $name, $code, $category, $id, $status);
 
             if ($sql->execute()) {
                 return true;
