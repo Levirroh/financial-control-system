@@ -154,7 +154,7 @@ class AuthController{
         $registerSuccess = $stock->request_item($data);
 
         if ($registerSuccess) {
-             echo json_encode(['success' => true, 'redirect' => 'home/stock']);
+             echo json_encode(['success' => true, 'redirect' => 'stock']);
         } else {
              echo json_encode(['success' => false, 'message' => 'Erro ao adicionar item']);
         }
