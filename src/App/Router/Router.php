@@ -51,6 +51,9 @@
             } else if($uri[0] === 'add_item'){
                 $controller = 'AdminController';
                 $method = 'add_item';
+            } else if($uri[0] === 'user_request'){
+                $controller = 'HomeController';
+                $method = 'request';
             } else{
                 $method = 'index';
             }

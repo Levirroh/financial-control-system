@@ -115,4 +115,24 @@
                 die('Erro ao executar a consulta: ' . $sql->error);
             }
         }
+        public static function request_item($data){
+
+            $con = Connection::getConn();
+            $name = $data['name'];
+            $category = $data['category'];
+            $code = $data['code'];
+
+            $sql = "INSERT INTO requests (name_request, code_request, category_request) VALUES (?, ?, ?)";
+            $sql = $con->prepare($sql);
+            if ($sql === false) {
+                die('Erro ao preparar a consulta: ' . $con->error);
+            }
+            $sql->bind_param('sss', $name, $code, $category);
+
+            if ($sql->execute()) {
+                return true;
+            } else {
+                die('Erro ao executar a consulta: ' . $sql->error);
+            }
+        }
     }

@@ -73,5 +73,36 @@ submitButton.addEventListener('click', (event) => {
             console.log('Erro na requisição: ', error);
         })
     }
+    if (buttonValue === 'Fazer pedido'){
+        let inputs = document.querySelectorAll('.input');
+
+        let formData = {}; 
+        inputs.forEach(input => {
+            formData[input.name] = input.value;
+        })
+        fetch(`auth/request_item`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: formData.id,
+                name: formData.name,
+                category: formData.category,
+                code: formData.code,
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success){
+                window.location = data.redirect;
+            } else {
+                console.log(data.message);
+            }
+        })
+        .catch(error => {
+            console.log('Erro na requisição: ', error);
+        })
+    }
        
 })
