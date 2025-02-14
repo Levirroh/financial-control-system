@@ -160,4 +160,60 @@
         
             return $data;
         }
+        public static function selectRequests(){
+
+            $con = Connection::getConn();
+
+            $sql = "SELECT DISTINCT * FROM requests INNER JOIN users ON requests.fk_user = users.id_user ";
+            $sql = $con->prepare($sql);
+            $sql->execute();
+    
+            $result = $sql->get_result();
+
+            $data = [];
+
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row; 
+            }
+
+            if (!$data){
+                throw new Exception("Não foi encontrado nenhum pedido.");
+            } 
+        
+            return $data;
+        }
+        public static function acceptRequest($id){
+
+            $con = Connection::getConn();
+
+            $sql = "UPDATE requests SET status_request = 'Aprovado' WHERE id_request = ?";
+            $sql = $con->prepare($sql);
+            if ($sql === false) {
+                die('Erro ao preparar a consulta: ' . $con->error);
+            }
+            $sql->bind_param('i',$id);
+
+            if ($sql->execute()) {
+                return true;
+            } else {
+                die('Erro ao executar a consulta: ' . $sql->error);
+            }
+        }
+        public static function refuseRequest($id){
+
+            $con = Connection::getConn();
+
+            $sql = "UPDATE requests SET status_request = 'Recusado' WHERE id_request = ?";
+            $sql = $con->prepare($sql);
+            if ($sql === false) {
+                die('Erro ao preparar a consulta: ' . $con->error);
+            }
+            $sql->bind_param('i',$id);
+
+            if ($sql->execute()) {
+                return true;
+            } else {
+                die('Erro ao executar a consulta: ' . $sql->error);
+            }
+        }
     }

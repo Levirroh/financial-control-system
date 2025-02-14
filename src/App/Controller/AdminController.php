@@ -184,17 +184,48 @@ class AdminController{
             $twig = new \Twig\Environment($loader); 
 
             $template = $twig->load('requests.html'); 
+            
+            $user['users'] = Stock::selectRequests();
 
-            $user['id'] = $_SESSION['id'];
-            $user['name'] = $_SESSION['name'];
-            $user['email'] = $_SESSION['email'];
-            $user['function'] = $_SESSION['function'];
-            $user['isAdmin'] = $_SESSION['isAdmin'];
 
             $conteudo = $template->render($user);
             echo $conteudo;
         } catch (Exception $e) {
             echo $e->getMessage();
         }
+    }
+    public function accept_request(){
+        
+        $url = $_GET['url'];
+
+        $uri = explode('/', $url);
+
+        $id = $uri[2];
+
+        $accept = Stock::acceptRequest($id);
+
+        if ($accept === true) {
+            header('Location: /financial-control-system/requests');
+        } else{
+            echo "algo deu errado!";
+        }
+        
+    }
+    public function refuse_request(){
+        
+        $url = $_GET['url'];
+
+        $uri = explode('/', $url);
+
+        $id = $uri[2];
+
+        $accept = Stock::refuseRequest($id);
+
+        if ($accept === true) {
+            header('Location: /financial-control-system/requests');
+        } else{
+            echo "algo deu errado!";
+        }
+        
     }
 }
