@@ -5,14 +5,17 @@
         <title>Document</title>
     </head>
     <body>
-        <div>
+        <div> 
             <a href="menu">voltar</a>
+            <p>{{ name }}</p>
+
             <h1>Faça um pedido</h1>
             <form method="POST">
                 <p>Nome do item:</p>
                 <input type="text" name="name" class="input" autocomplete="off">
                 <p>Categoria do Item:</p>
                 <input type="text" name="category" class="input" autocomplete="off">
+                <input type="hidden" name="id" value="{{user.id_user}}" class="input">
                 <p>Código do Item:</p>
                 <input type="text" name="code" class="input" autocomplete="off">
                 <br>
