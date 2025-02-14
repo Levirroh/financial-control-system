@@ -7,19 +7,14 @@
     <body>
         <div>
             <a href="menu">voltar</a>
-            <h1>Adicione um item</h1>
+            <h1>Faça um pedido</h1>
             <form method="POST">
                 <p>Nome do item:</p>
                 <input type="text" name="name" class="input" autocomplete="off">
                 <p>Categoria do Item:</p>
                 <input type="text" name="category" class="input" autocomplete="off">
-                <p>Distribuidora:</p>
-                <input type="text" name="distributor" class="input" autocomplete="off">
-                <p>Este pedido é de reposição? (O item já existe no estoque)</p>
-                <select name="exists" id="select">
-                    <option name="0" value="0" selected>NÃO</option>
-                    <option name="1" value="1">SIM</option>
-                </select>
+                <p>Código do Item:</p>
+                <input type="text" name="code" class="input" autocomplete="off">
                 <br>
                 <input type="submit" value="Fazer pedido" id="submit">
             </form>
