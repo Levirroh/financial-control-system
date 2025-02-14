@@ -53,7 +53,7 @@
                 $method = 'add_item';
             } else if($uri[0] === 'user_request'){
                 $controller = 'HomeController';
-                $method = 'request';
+                $method = 'user_request';
             } else{
                 $method = 'index';
             }

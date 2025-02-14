@@ -70,4 +70,20 @@ class HomeController{
             echo $e->getMessage();
         }
     }
+    public function user_request(){
+        try {
+            $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/user');
+            $twig = new \Twig\Environment($loader); 
+
+            $template = $twig->load('user_request.html'); 
+            $id = $_SESSION['id'];
+            $user['users'] = Stock::selectRequestById($id);
+
+
+            $conteudo = $template->render($user);
+            echo $conteudo;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
 }

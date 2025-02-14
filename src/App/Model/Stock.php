@@ -137,4 +137,27 @@
                 die('Erro ao executar a consulta: ' . $sql->error);
             }
         }
+        public static function selectRequestById($id){
+
+            $con = Connection::getConn();
+
+            $sql = "SELECT DISTINCT * FROM requests INNER JOIN users ON requests.fk_user = users.id_user WHERE fk_user = ?";
+            $sql = $con->prepare($sql);
+            $sql->bind_param('i', $id);
+            $sql->execute();
+    
+            $result = $sql->get_result();
+
+            $data = [];
+
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row; 
+            }
+
+            if (!$data){
+                throw new Exception("Não foi encontrado nenhum pedido.");
+            } 
+        
+            return $data;
+        }
     }

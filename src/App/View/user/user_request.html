@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="menu">Voltar</a>
+    <h1>Pedidos</h1>
+    <div>
+        <table border="2">
+            <tr>
+                <th>Id do pedido:</th>
+                <th>Criador do pedido:</th>
+                <th>Item:</th>
+                <th>Código:</th>
+                <th>Categoria:</th>
+                <th>Status:</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <th>{{user.id_request}}</th>
+                    <th>{{user.name_user}}</th>
+                    <th>{{user.name_request}}</th>
+                    <th>{{user.code_request}}</th>
+                    <th>{{user.category_request}}</th>
+                    <th>{{user.status_request}}</th>
+                </tr>
+            {% endfor %} 
+        </table>
+    </div>  
+</body>
+</html>
