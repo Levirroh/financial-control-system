@@ -55,6 +55,7 @@ submitButton.addEventListener('click', (event) => {
             body: JSON.stringify({
                 id: formData.id,
                 name: formData.name,
+                quantity: formData.quantity,
                 category: formData.category,
                 price: formData.price,
                 code: formData.code,
