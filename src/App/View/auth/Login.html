@@ -2,19 +2,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/styles/styles.css">
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <h1>Seja bem-vindo! Crie a sua conta</h1>
-        <form method="POST">
-            <p>Insira seu nome ou email</p>
-            <input type="text" name="name" class="input_login">
-            <p>Insira sua senha</p>
-            <input type="text" name="password" class="input_login">
-            <input type="submit" value="Login" id="submit">
-        </form>
-    </div>
+    <section id="sec-main">
+        <div id="div-main">
+            <h1>Seja bem-vindo de volta!</h1>
+            <form method="POST" id="form-login">
+                <p>Insira seu nome</p>
+                <input type="text" name="name" class="input_login">
+                <p>Insira sua senha</p>
+                <input type="text" name="password" class="input_login">
+                <input type="submit" value="Login" id="submit">
+            </form>
+        </div>
+    </section>
 <script type="module" src="public/scripts/auth.js"></script>
 </body>
 </html>

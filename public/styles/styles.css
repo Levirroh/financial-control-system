@@ -64,3 +64,39 @@ a{
     align-items: center;
     justify-content: space-evenly;
 }
+
+
+/* Página de login */
+#form-login{
+    display: flex;
+    height: 80%;
+    gap: 7px;
+    flex-direction: column;
+    align-items: center;   
+    justify-content: center;
+}
+.input_login{
+    height: 4vh;
+    color: white;
+    
+}
+#form-login input{
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(172, 169, 207);
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    transition: 0.5s;
+}
+
+#form-login input:hover{
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: rgb(53, 51, 83);
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    transition: 0.5s;
+}
