@@ -20,7 +20,7 @@ submitButton.addEventListener('click', (event) => {
                 id: formData.id,
                 name: formData.name,
                 category: formData.category,
-                category: formData.quantity,
+                quantity: formData.quantity,
                 price: formData.price,
                 code: formData.code,
                 sale: select
