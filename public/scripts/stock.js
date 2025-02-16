@@ -11,7 +11,6 @@ submitButton.addEventListener('click', (event) => {
         inputs.forEach(input => {
             formData[input.name] = input.value;
         })
-        console.log(formData.id);
         fetch(`auth/add_item`, {
             method: 'POST',
             headers: {
@@ -21,6 +20,7 @@ submitButton.addEventListener('click', (event) => {
                 id: formData.id,
                 name: formData.name,
                 category: formData.category,
+                category: formData.quantity,
                 price: formData.price,
                 code: formData.code,
                 sale: select

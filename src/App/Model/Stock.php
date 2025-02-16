@@ -27,15 +27,16 @@
                 die('algo deu errado');
             }
             $name_item = $info['name'];
+            $quantity_item = $info['quantity'];
             $code_item = $info['code'];
             $price_item = $info['price']; 
             $category_item = $info['category'];
             $sale_item = (int) $info['sale']; 
 
             $query = "INSERT INTO stock
-            (name_item, code_item, price_item, category_item, sale_item)
+            (name_item, code_item, price_item, category_item, sale_item, quantity_item)
             VALUES
-            (?, ?, ?, ?, ?)";
+            (?, ?, ?, ?, ?, ?)";
 
             $statement = $conn->prepare($query);
 
@@ -43,7 +44,7 @@
                 die('Erro ao preparar a consulta: ' . $conn->error);
             }
     
-            $statement->bind_param('ssisi', $name_item, $code_item, $price_item, $category_item, $isAdsale_itemmin);
+            $statement->bind_param('ssisii', $name_item, $code_item, $price_item, $category_item, $sale_item, $quantity_item);
     
             if ($statement->execute()) {
                 return true;

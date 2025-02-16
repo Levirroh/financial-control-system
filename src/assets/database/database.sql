@@ -13,6 +13,7 @@ CREATE TABLE users(
 CREATE TABLE stock(
 	id_item INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name_item VARCHAR(45) NOT NULL,
+    quantity_item INT NOT NULL,
     code_item VARCHAR(90) NOT NULL,
     price_item INT NOT NULL,
     sale_item BOOLEAN,
@@ -25,6 +26,7 @@ CREATE TABLE requests(
     name_request VARCHAR(45) NOT NULL,
     code_request VARCHAR(90) NOT NULL,
     category_request VARCHAR(45) NOT NULL,
+    quantity_request INT NOT NULL,
     status_request ENUM ("Aprovado", "Recusado", "Não visto")
 );
 
