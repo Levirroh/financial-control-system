@@ -30,7 +30,7 @@ a{
     text-align: center;
     background-color: rgb(240, 242, 245);
     border-radius: 10px;
-    height: 30vh;
+    height: max-content;
     padding: 10px;
     box-shadow: 4px 4px 5px 0px;
 }
@@ -57,9 +57,13 @@ a{
     transition: 0.5s;
 }
 
+.auth-other{
+    font-size: smaller;
+}
+
 .two-items{
     display: flex;
-    height: 80%;
+    height: 20vh;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
@@ -74,7 +78,8 @@ a{
     flex-direction: column;
     align-items: center;   
     justify-content: center;
-    margin-top: 8px;
+    margin-top: 18px;
+    margin-bottom: 18px;
 }
 .input_login{
     height: 4vh;
