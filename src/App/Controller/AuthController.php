@@ -156,7 +156,24 @@ class AuthController{
         $registerSuccess = $stock->request_item($data);
 
         if ($registerSuccess) {
-             echo json_encode(['success' => true, 'redirect' => 'menu']);
+            header('Location: /financial-control-system/menu');
+        } else {
+             echo json_encode(['success' => false, 'message' => 'Erro ao adicionar item']);
+        }
+    }
+    public function delete_request(){
+
+        $url = $_GET['url'];
+
+        $uri = explode('/', $url);
+
+        $id = $uri[2];
+
+        $stock = new Stock();
+        $registerSuccess = $stock->deleteRequest($id);
+
+        if ($registerSuccess) {
+             header('Location: /financial-control-system/user_request');
         } else {
              echo json_encode(['success' => false, 'message' => 'Erro ao adicionar item']);
         }

@@ -162,7 +162,7 @@
 
             $con = Connection::getConn();
 
-            $sql = "SELECT DISTINCT * FROM requests INNER JOIN users ON requests.fk_user = users.id_user ";
+            $sql = "SELECT DISTINCT * FROM requests INNER JOIN users ON requests.fk_user = users.id_user INNER JOIN stock ON stock.id_item = requests.fk_item ";
             $sql = $con->prepare($sql);
             $sql->execute();
     
@@ -202,6 +202,23 @@
             $con = Connection::getConn();
 
             $sql = "UPDATE requests SET status_request = 'Recusado' WHERE id_request = ?";
+            $sql = $con->prepare($sql);
+            if ($sql === false) {
+                die('Erro ao preparar a consulta: ' . $con->error);
+            }
+            $sql->bind_param('i',$id);
+
+            if ($sql->execute()) {
+                return true;
+            } else {
+                die('Erro ao executar a consulta: ' . $sql->error);
+            }
+        }
+        public static function deleteRequest($id){
+
+            $con = Connection::getConn();
+
+            $sql = "DELETE FROM requests WHERE id_request = ?";
             $sql = $con->prepare($sql);
             if ($sql === false) {
                 die('Erro ao preparar a consulta: ' . $con->error);
