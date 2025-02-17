@@ -25,12 +25,9 @@ class AdminController{
             $twig = new \Twig\Environment($loader); 
 
             $template = $twig->load('financial.html'); 
+            
+            $user['users'] = Stock::selectAllApproved();
 
-            $user['id'] = $_SESSION['id'];
-            $user['name'] = $_SESSION['name'];
-            $user['email'] = $_SESSION['email'];
-            $user['function'] = $_SESSION['function'];
-            $user['isAdmin'] = $_SESSION['isAdmin'];
 
             $conteudo = $template->render($user);
             echo $conteudo;
