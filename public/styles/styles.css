@@ -44,6 +44,7 @@ a{
     font-size: small;
     height: 4vh;
     transition: 0.5s;
+    margin-top: 10px;
 }
 
 .button-blue:hover{
@@ -51,8 +52,8 @@ a{
     border: none;
     color: #fafafa;
     border-radius: 15px;
-    width: 15vw;
-    font-size: larger;
+    width: 17vw;
+    font-size: large;
     height: 6vh;
     transition: 0.5s;
 }
@@ -138,4 +139,36 @@ a{
     display: flex;
     justify-content: center;
     transition: 0.5s;
+}
+
+/*  MENUs  */
+
+#sec-menu{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(132, 170, 219);
+    padding: 10px;
+}
+
+#div-menu{
+    border-radius: 10px;
+    background-color: #f3f2f7;
+    padding: 20px;
+    height: max-content;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    text-align: center;
+    box-shadow: 4px 4px 5px 0px;
+}
+
+.options-row{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
 }

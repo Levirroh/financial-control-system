@@ -2,20 +2,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="public/styles/styles.css">
+    <title>Admin</title>
 </head>
 <body>
-    <div>
-        <a href="home">Sair</a>
-        <h1>Sistema de Gerenciamento de Financeiro!</h1>
-        <p>Seja bem vindo {{ name }}!</p>
-        <div>
-            <a href="financial"><button>Analisar Financeiro</button></a>
-            <a href="employees"><button>Gerenciar Funcionários</button></a>
-            <a href="requests"><button>Gerenciar Pedidos</button></a>
-            <a href="stock_admin"><button>Ver Estoque</button></a>
+    <section id="sec-menu">
+        <div id="div-menu">
+            <a href="home">Sair</a>
+            <h1>Sistema de Gerenciamento de Financeiro!</h1>
+            <p>Seja bem vindo {{ name }}!</p>
+            <div id="options-row">
+                <a href="financial"><button class="button-blue">Analisar Financeiro</button></a>
+                <a href="employees"><button class="button-blue">Gerenciar Funcionários</button></a><br>
+                <a href="requests"><button class="button-blue">Gerenciar Pedidos</button></a>
+                <a href="stock_admin"><button class="button-blue">Ver Estoque</button></a>
+            </div>
         </div>
-    </div>
-
+    </section>
 </body>
 </html>
