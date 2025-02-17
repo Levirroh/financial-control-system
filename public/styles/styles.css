@@ -172,3 +172,47 @@ a{
     width: 100%;
     align-items: center;
 }
+
+/* TABELAs */
+
+#sec-stock{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(132, 170, 219);
+    padding: 10px;
+}
+
+#div-stock{
+    border-radius: 10px;
+    background-color: #f3f2f7;
+    padding: 20px;
+    height: max-content;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    text-align: center;
+    box-shadow: 4px 4px 5px 0px;
+}
+
+table{
+    border: black 2px solid; /*mexe a borda ao redor*/
+    border-collapse: collapse;
+}
+
+th{
+    border: black 2px solid; /*mexe a borda interior*/
+    padding: 5px;
+    background-color: #d0dbfd;
+}
+
+.options-row-jc{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+}

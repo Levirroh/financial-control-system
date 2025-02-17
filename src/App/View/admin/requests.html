@@ -2,38 +2,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="public/styles/styles.css">
+    <title>Pedidos</title>
 </head>
 <body>
-    <a href="admin">Voltar</a>
-    <h1>Pedidos</h1>
-    <div>
-        <table border="2">
-            <tr>
-                <th>Id do pedido:</th>
-                <th>Criador do pedido:</th>
-                <th>Quantidade:</th>
-                <th>Item:</th>
-                <th>Código:</th>
-                <th>Categoria:</th>
-                <th>Status:</th>
-                <th>Aprovar:</th>
-                <th>Recusar:</th>
-            </tr>
-            {% for user in users %}
+    <section id="sec-stock">
+        <div id="div-stock">
+        <a href="admin">Voltar</a>
+        <h1>Pedidos</h1>
+            <table border="2">
                 <tr>
-                    <th>{{user.id_request}}</th>
-                    <th>{{user.name_user}}</th>
-                    <th>{{user.quantity_item}}</th>
-                    <th>{{user.name_item}}</th>
-                    <th>{{user.code_item}}</th>
-                    <th>{{user.category_item}}</th>
-                    <th>{{user.status_request}}</th>
-                    <th><a href="admin/accept_request/{{user.id_request}}">Aceitar</a></th>
-                    <th><a href="admin/refuse_request/{{user.id_request}}">Recusar</a></th>
+                    <th>Id do pedido:</th>
+                    <th>Criador do pedido:</th>
+                    <th>Quantidade:</th>
+                    <th>Item:</th>
+                    <th>Código:</th>
+                    <th>Categoria:</th>
+                    <th>Status:</th>
+                    <th>Aprovar:</th>
+                    <th>Recusar:</th>
                 </tr>
-            {% endfor %} 
-        </table>
-    </div>  
+                {% for user in users %}
+                    <tr>
+                        <th>{{user.id_request}}</th>
+                        <th>{{user.name_user}}</th>
+                        <th>{{user.quantity_item}}</th>
+                        <th>{{user.name_item}}</th>
+                        <th>{{user.code_item}}</th>
+                        <th>{{user.category_item}}</th>
+                        <th>{{user.status_request}}</th>
+                        <th><a href="admin/accept_request/{{user.id_request}}">Aceitar</a></th>
+                        <th><a href="admin/refuse_request/{{user.id_request}}">Recusar</a></th>
+                    </tr>
+                {% endfor %} 
+            </table>
+        </div>  
+    </section>
 </body>
 </html>

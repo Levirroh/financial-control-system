@@ -2,36 +2,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="public/styles/styles.css">
+    <title>Funcionários</title>
 </head>
 <body>
-    <a href="admin">Voltar</a>
-    <a href="create_employee">Cadastrar Funcionário</a>
-    <h1>Usuários</h1>
-    <div>
-        <table border="2">
-            <tr>
-                <th>ID do usuário</th>
-                <th>Nome:</th>
-                <th>Email:</th>
-                <th>Função:</th>
-                <th>Admin:</th>
-                <th>Editar:</th>
-                <th>Excluir:</th>
-            </tr>
-            {% for user in users %}
+    <section id="sec-stock">
+        <div id="div-stock">
+            <div class="options-row-jc">
+                <a href="admin">Voltar</a>
+                <a href="create_employee">Cadastrar Funcionário</a>
+            </div>
+            <h1>Usuários</h1>
+            <table border="2">
                 <tr>
-                    <th>{{user.id_user}}</th>
-                    <th>{{user.name_user}}</th>
-                    <th>{{user.email_user}}</th>
-                    <th>{{user.function_user}}</th>
-                    <th>{{user.isAdmin}}</th>
-                    <th><a href="admin/update/{{user.id_user}}">Editar</a></th>
-                    <th><a href="admin/delete/{{user.id_user}}">Excluir</a></th>
+                    <th>ID do usuário</th>
+                    <th>Nome:</th>
+                    <th>Email:</th>
+                    <th>Função:</th>
+                    <th>Admin:</th>
+                    <th>Editar:</th>
+                    <th>Excluir:</th>
                 </tr>
-            {% endfor %} 
-        </table>
-    </div>  
+                {% for user in users %}
+                    <tr>
+                        <th>{{user.id_user}}</th>
+                        <th>{{user.name_user}}</th>
+                        <th>{{user.email_user}}</th>
+                        <th>{{user.function_user}}</th>
+                        <th>{{user.isAdmin}}</th>
+                        <th><a href="admin/update/{{user.id_user}}">Editar</a></th>
+                        <th><a href="admin/delete/{{user.id_user}}">Excluir</a></th>
+                    </tr>
+                {% endfor %} 
+            </table>
+        </div>  
+    </section>
 </body>
 </html>
 
