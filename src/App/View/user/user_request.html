@@ -2,36 +2,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="public/styles/styles.css">
+    <title>Pedidos</title>
 </head>
 <body>
-    <a href="menu">Voltar</a>
-    <h1>Pedidos</h1>
-    <div>
-        <table border="2">
-            <tr>
-                <th>Id do pedido:</th>
-                <th>Criador do pedido:</th>
-                <th>Item:</th>
-                <th>Código:</th>
-                <th>Categoria:</th>
-                <th>Quantidade:</th>
-                <th>Status:</th>
-                <th>Ações:</th>
-            </tr>
-            {% for user in users %}
+    <section id="sec-stock"> 
+        <div id="div-stock">
+        <a href="menu">Voltar</a>
+        <h1>Seus pedidos</h1>
+            <table border="2">
                 <tr>
-                    <th>{{user.id_request}}</th>
-                    <th>{{user.name_user}}</th>
-                    <th>{{user.name_item}}</th>
-                    <th>{{user.code_item}}</th>
-                    <th>{{user.category_item}}</th>
-                    <th>{{user.quantity_item}}</th>
-                    <th>{{user.status_request}}</th>
-                    <th><a href="auth/delete_request/{{user.id_request}}">Apagar pedido</a></th>
+                    <th>Id do pedido:</th>
+                    <th>Criador do pedido:</th>
+                    <th>Item:</th>
+                    <th>Código:</th>
+                    <th>Categoria:</th>
+                    <th>Quantidade:</th>
+                    <th>Status:</th>
+                    <th>Ações:</th>
                 </tr>
-            {% endfor %} 
-        </table>
-    </div>  
+                {% for user in users %}
+                    <tr>
+                        <th>{{user.id_request}}</th>
+                        <th>{{user.name_user}}</th>
+                        <th>{{user.name_item}}</th>
+                        <th>{{user.code_item}}</th>
+                        <th>{{user.category_item}}</th>
+                        <th>{{user.quantity_item}}</th>
+                        <th>{{user.status_request}}</th>
+                        <th><a href="auth/delete_request/{{user.id_request}}">Apagar pedido</a></th>
+                    </tr>
+                {% endfor %} 
+            </table>
+        </div>  
+    </section>
 </body>
 </html>
