@@ -119,18 +119,15 @@
         public static function request_item($data){
 
             $con = Connection::getConn();
-            $id = $data['id'];
-            $name = $data['name'];
-            $category = $data['category'];
-            $code = $data['code'];
-            $status = "Não visto";
+            $id_item = $data[0];
+            $id_user = $data[1];
 
-            $sql = "INSERT INTO requests (name_request, code_request, category_request, fk_user, status_request) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO requests (fk_item, fk_user, status_request) VALUES (?, ?, 'Não visto')";
             $sql = $con->prepare($sql);
             if ($sql === false) {
                 die('Erro ao preparar a consulta: ' . $con->error);
             }
-            $sql->bind_param('sssis', $name, $code, $category, $id, $status);
+            $sql->bind_param('ii', $id_item, $id_user);
 
             if ($sql->execute()) {
                 return true;
@@ -142,7 +139,7 @@
 
             $con = Connection::getConn();
 
-            $sql = "SELECT DISTINCT * FROM requests INNER JOIN users ON requests.fk_user = users.id_user WHERE fk_user = ?";
+            $sql = "SELECT * FROM requests INNER JOIN users ON requests.fk_user = users.id_user INNER JOIN stock ON stock.id_item = requests.fk_item WHERE fk_user = ?";
             $sql = $con->prepare($sql);
             $sql->bind_param('i', $id);
             $sql->execute();

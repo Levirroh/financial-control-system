@@ -143,18 +143,20 @@ class AuthController{
     }
     public function request_item(){
 
-        $data = json_decode(file_get_contents("php://input"), true);
+        $url = $_GET['url'];
 
-        if (!$data) {
-            echo json_encode(['success' => false, 'message' => 'Dados inválidos recebidos']);
-            exit;
-        }
+        $uri = explode('/', $url);
+
+        $id_item = $uri[2];
+        $id_user = $_SESSION['id'];
+
+        $data = [$id_item, $id_user];
 
         $stock = new Stock();
         $registerSuccess = $stock->request_item($data);
 
         if ($registerSuccess) {
-             echo json_encode(['success' => true, 'redirect' => 'stock']);
+             echo json_encode(['success' => true, 'redirect' => 'menu']);
         } else {
              echo json_encode(['success' => false, 'message' => 'Erro ao adicionar item']);
         }
