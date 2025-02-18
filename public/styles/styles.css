@@ -216,3 +216,11 @@ th{
     width: 100%;
     align-items: center;
 }
+
+.Aprovado{
+    background-color: #c9fde0;
+}
+
+.Recusado{
+    background-color: #ffc6c6;
+}

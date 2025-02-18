@@ -2,32 +2,35 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <link rel="stylesheet" href="public/styles/styles.css">
+        <title>Insira um item</title>
     </head>
     <body>
-        <div>
-            <a href="admin">voltar</a>
-            <h1>Adicione um item</h1>
-            <form method="POST">
-                <p>Nome do item:</p>
-                <input type="text" name="name" class="input" autocomplete="off">
-                <p>Categoria do Item:</p>
-                <input type="text" name="category" class="input" autocomplete="off">
-                <p>Preço do Item:</p>
-                <input type="text" name="price" class="input" autocomplete="off">
-                <p>Código do Item:</p>
-                <input type="text" name="code" class="input" autocomplete="off">
-                <p>Quantidade do item no estoque:</p>
-                <input type="text" name="quantity" class="input" autocomplete="off">
-                <p>O item está em Oferta?</p>
-                <select name="sale" id="select">
-                    <option name="0" value="0" selected>NÃO</option>
-                    <option name="1" value="1">SIM</option>
-                </select>
-                <br>
-                <input type="submit" value="Adicionar Item" id="submit">
-            </form>
-        </div>
+        <section id="sec-main">
+            <div id="div-main">
+                <a href="admin">voltar</a>
+                <h1>Adicione um item</h1>
+                <form method="POST" id="form-login">
+                    <p>Nome do item:</p>
+                    <input type="text" name="name" class="input" autocomplete="off">
+                    <p>Categoria do Item:</p>
+                    <input type="text" name="category" class="input" autocomplete="off">
+                    <p>Preço do Item:</p>
+                    <input type="text" name="price" class="input" autocomplete="off">
+                    <p>Código do Item:</p>
+                    <input type="text" name="code" class="input" autocomplete="off">
+                    <p>Quantidade do item no estoque:</p>
+                    <input type="text" name="quantity" class="input" autocomplete="off">
+                    <p>O item está em Oferta?</p>
+                    <select name="sale" id="select">
+                        <option name="0" value="0" selected>NÃO</option>
+                        <option name="1" value="1">SIM</option>
+                    </select>
+                    <br>
+                    <input type="submit" value="Adicionar Item" id="submit">
+                </form>
+            </div>
+        </section>
     <script type="module" src="public/scripts/stock.js"></script>
     </body>
     </html>
