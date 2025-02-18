@@ -6,13 +6,13 @@ Este projeto tem como objetivo criar um **Sistema de Gerenciamento Financeiro** 
 ## 🚀 Funcionalidades
 ### 🔹 Versão 0.1 (Ideias Iniciais)
 - 📦 **Gerenciamento de Finanças**
-  - Administradores podem cadastrar e remover produtos do estoque. &#9989
+  - Administradores podem cadastrar e remover produtos do estoque. ✅
   - O sistema exibirá gráficos com os gastos e ganhos. 
 - 🏢 **Gestão de Funcionários**
-  - Administradores podem contratar e demitir funcionários. &#9989 
+  - Administradores podem contratar e demitir funcionários.✅ 
 - 🛒 **Requisição de Compras**
-  - Funcionários podem solicitar a compra de produtos. &#9989
-  - Administradores podem aprovar ou rejeitar pedidos de compra. &#9989 
+  - Funcionários podem solicitar a compra de produtos. ✅
+  - Administradores podem aprovar ou rejeitar pedidos de compra. ✅ 
 - 💰 **Simulação de Orçamento**
   - O sistema incluirá um dinheiro simulado para verificar a viabilidade das compras. 
 - 🔐 **Autenticação de Usuários**
