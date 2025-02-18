@@ -2,32 +2,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/financial-control-system/public/styles/styles.css">
+    <title>Update a user</title>
 </head>
 <body>
-    <div>
-        <a href="/financial-control-system/employees">Voltar</a>
-        <h1>Altere sua conta!</h1>
-        <form method="POST">
-            <p>Insira seu nome</p>
-            <input type="text" name="name" class="input" autocomplete="off" value="{{user.name_user}}">
-            <p>Insira seu email</p>
-            <input type="text" name="email" class="input" autocomplete="off" value="{{user.email_user}}">
-            <p>Insira sua senha</p>
-            <input type="text" name="password" class="input" autocomplete="off" value="{{user.password_user}}">
-            <p>Insira sua função</p>
-            <input type="text" name="function" class="input" autocomplete="off" value="{{user.function_user}}">
-            <input type="hidden" name="id" value="{{user.id_user}}" class="input">
-            <p>Você é um ADMIN?</p>
-            <select name="admin" id="select">
-                <option value="{{user.isAdmin}}" selected>{{user.isAdmin}}</option>
-                <option value="0">NÃO</option>
-                <option value="1">SIM</option>
-            </select>
-            <br>
-            <input type="submit" value="Alterar" id="submit">
-        </form>
-    </div>
+    <section id="sec-main">
+        <div id="div-main">
+            <a href="/financial-control-system/employees">Voltar</a>
+            <h1>Altere sua conta!</h1>
+            <form method="POST" id="form-login">
+                <p>Insira seu nome</p>
+                <input type="text" name="name" class="input" autocomplete="off" value="{{user.name_user}}">
+                <p>Insira seu email</p>
+                <input type="text" name="email" class="input" autocomplete="off" value="{{user.email_user}}">
+                <p>Insira sua senha</p>
+                <input type="text" name="password" class="input" autocomplete="off" value="{{user.password_user}}">
+                <p>Insira sua função</p>
+                <input type="text" name="function" class="input" autocomplete="off" value="{{user.function_user}}">
+                <input type="hidden" name="id" value="{{user.id_user}}" class="input">
+                <p>Você é um ADMIN?</p>
+                <select name="admin" id="select">
+                    <option value="{{user.isAdmin}}" selected>{{user.isAdmin}}</option>
+                    <option value="0">NÃO</option>
+                    <option value="1">SIM</option>
+                </select>
+                <br>
+                <input type="submit" value="Alterar" id="submit">
+            </form>
+        </div>
+    </section>
 <script type='module' src="/financial-control-system/public/scripts/auth.js"></script>
 </body>
 </html>
