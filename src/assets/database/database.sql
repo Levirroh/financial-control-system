@@ -21,12 +21,10 @@ CREATE TABLE stock(
 );
 CREATE TABLE requests(
 	id_request INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    fk_item INT NOT NULL,
+	FOREIGN KEY (fk_item) REFERENCES stock(id_item),
     fk_user INT NOT NULL,
     FOREIGN KEY (fk_user) REFERENCES users(id_user),
-    name_request VARCHAR(45) NOT NULL,
-    code_request VARCHAR(90) NOT NULL,
-    category_request VARCHAR(45) NOT NULL,
-    quantity_request INT NOT NULL,
     status_request ENUM ("Aprovado", "Recusado", "Não visto")
 );
 
