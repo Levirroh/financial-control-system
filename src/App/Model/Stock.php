@@ -270,7 +270,7 @@
                 if ($sql === false) {
                     die('Erro ao preparar a consulta: ' . $con->error);
                 }
-                $sql->bind_param('i',$id_request);
+                $sql->bind_param('i',$id_item);
 
                 if ($sql->execute()) {
                     return true;
