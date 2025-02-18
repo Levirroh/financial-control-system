@@ -1,7 +1,23 @@
 <?php
 
     class Stock{
+        public static function selectAllApproved(){
+            $con = Connection::getConn();
 
+            $sql = "SELECT DISTINCT * FROM requests INNER JOIN users ON requests.fk_user = users.id_user INNER JOIN stock ON stock.id_item = requests.fk_item WHERE requests.status_request = 'Aprovado' ORDER BY requests.id_request";
+            $sql = $con->prepare($sql);
+            $sql->execute();
+    
+            $result = $sql->get_result();
+
+            $resultado = [];
+            while ($row = $result->fetch_assoc()) {
+                $resultado[] = (object) $row; 
+            }
+
+        
+            return $resultado;
+        }
         public static function selectAll(){
             $con = Connection::getConn();
 
@@ -231,4 +247,11 @@
                 die('Erro ao executar a consulta: ' . $sql->error);
             }
         }
+        public static function buyItem($id){
+            // adicionar quantidade no item, perder o dinheiro do item referente ao tanto que comprou e também deletar os pedidos todos os pedidos que envolvem o item.
+            $con = Connection::getConn();
+
+           
+        }
+        
     }

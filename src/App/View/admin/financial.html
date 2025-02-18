@@ -14,26 +14,23 @@
                 <tr>
                     <th>Id do pedido:</th>
                     <th>Criador do pedido:</th>
-                    <th>Quantidade:</th>
+                    <th>Quantidade no Estoque:</th>
                     <th>Item:</th>
                     <th>Código:</th>
                     <th>Categoria:</th>
                     <th>Status:</th>
-                    <th>Comprar:</th>
-                    <th>Vender:</th>
-
+                    <th>Ações:</th>
                 </tr>
-                {% for user in users %}
+                {% for items in aprovados %}
                     <tr>
-                        <th>{{user.id_request}}</th>
-                        <th>{{user.name_user}}</th>
-                        <th>{{user.quantity_item}}</th>
-                        <th>{{user.name_item}}</th>
-                        <th>{{user.code_item}}</th>
-                        <th>{{user.category_item}}</th>
-                        <th>{{user.status_request}}</th>
-                        <th><a href="admin/buy_item/{{user.id_request}}">Comprar</a></th>
-                        <th><a href="admin/sell_item/{{user.id_request}}">Vender</a></th>
+                        <th>{{items.id_request}}</th>
+                        <th>{{items.name_user}}</th>
+                        <th>{{items.quantity_item}}</th>
+                        <th>{{items.name_item}}</th>
+                        <th>{{items.code_item}}</th>
+                        <th>{{items.category_item}}</th>
+                        <th>{{items.status_request}}</th>
+                        <th></th>
                     </tr>
                 {% endfor %} 
             </table>

@@ -26,10 +26,14 @@ class AdminController{
 
             $template = $twig->load('financial.html'); 
             
-            $user['users'] = Stock::selectAllApproved();
+            $item = array();
+
+            $aprovados = Stock::selectAllApproved();
+
+            $item['aprovados'] = $aprovados;
 
 
-            $conteudo = $template->render($user);
+            $conteudo = $template->render($item);
             echo $conteudo;
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -225,4 +229,5 @@ class AdminController{
         }
         
     }
+    
 }
