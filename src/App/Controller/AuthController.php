@@ -178,4 +178,21 @@ class AuthController{
              echo json_encode(['success' => false, 'message' => 'Erro ao adicionar item']);
         }
     }
+    public function buy_item(){
+
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        if (!$data) {
+            echo json_encode(['success' => false, 'message' => 'Dados inválidos recebidos']);
+            exit;
+        }
+
+        $registerSuccess = Stock::buyItem($data);
+
+        if ($registerSuccess) {
+             echo json_encode(['success' => true, 'redirect' => 'financial']);
+        } else {
+             echo json_encode(['success' => false, 'message' => 'Erro ao adicionar item']);
+        }
+    }
 }

@@ -247,10 +247,39 @@
                 die('Erro ao executar a consulta: ' . $sql->error);
             }
         }
-        public static function buyItem($id){
-            // adicionar quantidade no item, perder o dinheiro do item referente ao tanto que comprou e também deletar os pedidos todos os pedidos que envolvem o item.
+        public static function buyItem($data){
+
             $con = Connection::getConn();
 
+            $quantity = $data['quantity'];
+            $id_item = $data['id_item'];
+            $id_request = $data['id_request'];
+
+            $sql = "UPDATE stock SET quantity_item = quantity_item + ? WHERE id_item = ?";
+            $sql = $con->prepare($sql);
+            if ($sql === false) {
+                die('Erro ao preparar a consulta: ' . $con->error);
+            }
+            $sql->bind_param('ii',$quantity, $id_item);
+
+            if ($sql->execute()) {
+
+                $sql = "DELETE FROM requests WHERE fk_item = ?";
+                $sql = $con->prepare($sql);
+
+                if ($sql === false) {
+                    die('Erro ao preparar a consulta: ' . $con->error);
+                }
+                $sql->bind_param('i',$id_request);
+
+                if ($sql->execute()) {
+                    return true;
+                } else {
+                    die('Erro ao executar a consulta: ' . $sql->error);
+                }
+            } else {
+                die('Erro ao executar a consulta: ' . $sql->error);
+            }
            
         }
         

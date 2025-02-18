@@ -12,29 +12,62 @@
         <h1>Pedidos</h1>
             <table border="2">
                 <tr>
-                    <th>Id do pedido:</th>
                     <th>Criador do pedido:</th>
-                    <th>Quantidade no Estoque:</th>
+                    <th>No estoque:</th>
                     <th>Item:</th>
-                    <th>Código:</th>
                     <th>Categoria:</th>
                     <th>Status:</th>
-                    <th>Ações:</th>
+                    <th>id</th>
+                    <th>Preço:</th>
+                    <th>Comprar:</th>
                 </tr>
                 {% for items in aprovados %}
                     <tr>
-                        <th>{{items.id_request}}</th>
                         <th>{{items.name_user}}</th>
                         <th>{{items.quantity_item}}</th>
                         <th>{{items.name_item}}</th>
-                        <th>{{items.code_item}}</th>
                         <th>{{items.category_item}}</th>
                         <th>{{items.status_request}}</th>
-                        <th></th>
+                        <th>{{items.id_request}}</th>
+                        <th class="price_item">{{items.price_item}}</th> 
+                        <th>
+                            <form method="POST">
+                                <p>Quantidade de compra</p>
+                                <input type="number" name="buy_quantity" class="quantity_input input" min="1">
+
+                                <input type="hidden" name="id_item" value="{{items.id_item}}" class="input">
+
+                                <input type="hidden" name="id_request" value="{{items.id_request}}" class="input">
+
+                                <input type="submit" value="Comprar"  id="submit" class="buy_button"><br>
+                                
+                                <small>Clique duas vezes para confirmar</small>
+
+                                <p class="total_price">Custo: R$ 0,00</p> 
+                            </form>
+                        </th> 
                     </tr>
                 {% endfor %} 
             </table>
         </div>  
     </section>
+
+    <script> // se eu fizer pelo script ele não carrega :/
+        document.addEventListener("DOMContentLoaded", function() {
+            let quantityInputs = document.querySelectorAll(".quantity_input");
+
+            quantityInputs.forEach(input => {
+                input.addEventListener("input", function() {
+                    let row = this.closest("tr"); 
+                    let price = parseFloat(row.querySelector(".price_item").textContent.replace(",", ".")) || 0; 
+                    let quantity = parseFloat(this.value) || 0; 
+                    let totalCost = price * quantity;
+
+                    row.querySelector(".total_price").textContent = `Custo: R$ ${totalCost.toFixed(2)}`;
+                });
+            });
+        });
+    </script>
+    <script src="public/scripts/stock.js"></script>
 </body>
 </html>

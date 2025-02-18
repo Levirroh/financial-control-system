@@ -105,5 +105,37 @@ submitButton.addEventListener('click', (event) => {
             console.log('Erro na requisição: ', error);
         })
     }
-       
+    if (buttonValue === 'Comprar'){
+        document.querySelectorAll(".buy_button").forEach(button => {
+            button.addEventListener("click", function(event) {
+                event.preventDefault();  
+    
+                let row = this.closest("tr"); 
+                let formData = {
+                    id_item: row.querySelector('input[name="id_item"]').value,
+                    id_request: row.querySelector('input[name="id_request"]').value,
+                    quantity: row.querySelector('input[name="buy_quantity"]').value
+                };
+    
+                fetch("auth/buy_item", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location = data.redirect;
+                    } else {
+                        console.log(data.message);
+                    }
+                })
+                .catch(error => {
+                    console.log("Erro na requisição: ", error);
+                });
+            });
+        });
+    };
 })
