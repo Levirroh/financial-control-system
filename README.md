@@ -14,9 +14,11 @@ Este projeto tem como objetivo criar um **Sistema de Gerenciamento Financeiro** 
   - Funcionários podem solicitar a compra de produtos. ✅
   - Administradores podem aprovar ou rejeitar pedidos de compra. ✅ 
 - 💰 **Simulação de Orçamento**
-  - O sistema incluirá um dinheiro simulado para verificar a viabilidade das compras. 
+  - O sistema incluirá um dinheiro simulado para verificar a viabilidade das compras. ✅ 
 - 🔐 **Autenticação de Usuários**
   - Apenas usuários autenticados podem acessar o sistema. 
+  - Caso contrário estarão em uma página de compras de itens, simulando um ambiente real.
+
 
 ### 🔮 Planejamento Futuro
 - 📧 **Notificação via E-mail**
