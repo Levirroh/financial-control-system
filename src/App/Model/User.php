@@ -77,7 +77,7 @@
                     $_SESSION['id'] = $data['user']->id_user;
                     $_SESSION['name'] = $data['user']->name_user;
                     $_SESSION['email'] = $data['user']->email_user;
-                    $_SESSION['function'] = $data['user']->function_user;
+                    $_SESSION['function'] = $data['user']->type_user;
                     $_SESSION['isAdmin'] = $data['user']->isAdmin;
 
                     return true;
