@@ -114,7 +114,10 @@ submitButton.addEventListener('click', (event) => {
                 let formData = {
                     id_item: row.querySelector('input[name="id_item"]').value,
                     id_request: row.querySelector('input[name="id_request"]').value,
-                    quantity: row.querySelector('input[name="buy_quantity"]').value
+                    quantity: row.querySelector('input[name="buy_quantity"]').value,
+                    item: row.querySelector('input[name="item"]').value,
+                    price_item: row.querySelector('input[name="price"]').value
+
                 };
     
                 fetch("auth/buy_item", {
