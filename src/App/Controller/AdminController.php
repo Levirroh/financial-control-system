@@ -40,7 +40,6 @@ class AdminController{
 
             $item['aprovados'] = $aprovados;
             $item['totalBalance'] = $totalBalance;
-            var_dump($item);
 
             $conteudo = $template->render($item);
             echo $conteudo;
