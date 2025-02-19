@@ -196,6 +196,8 @@ a{
     width: max-content;
     text-align: center;
     box-shadow: 4px 4px 5px 0px;
+    padding: 25px 25px 20px 25px;
+
 }
 
 table{
@@ -223,4 +225,10 @@ th{
 
 .Recusado{
     background-color: #ffc6c6;
+}
+
+.options-between{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
