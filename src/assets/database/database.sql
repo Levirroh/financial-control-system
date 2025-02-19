@@ -28,3 +28,17 @@ CREATE TABLE requests(
     status_request ENUM ("Aprovado", "Recusado", "Não visto")
 );
 
+CREATE TABLE company_balance (
+    id_balance INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    total_balance DECIMAL(10,2) NOT NULL DEFAULT 0.00
+);
+
+CREATE TABLE company_transactions (
+    id_transaction INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    type_transaction ENUM("Entrada", "Saída") NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    description TEXT NOT NULL,
+    date_transaction TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
