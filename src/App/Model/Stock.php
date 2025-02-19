@@ -15,8 +15,7 @@
                 $resultado[] = (object) $row; 
             }
 
-        
-            return $resultado;
+            return [$resultado];
         }
         public static function selectAll(){
             $con = Connection::getConn();

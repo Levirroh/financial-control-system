@@ -20,6 +20,7 @@ class AdminController{
         }
     }
     public function financial(){
+        $con = Connection::getConn();
         try {
             $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/admin');
             $twig = new \Twig\Environment($loader); 
@@ -29,9 +30,17 @@ class AdminController{
             $item = array();
 
             $aprovados = Stock::selectAllApproved();
+            $stmt =  "SELECT total_balance FROM company_balance WHERE id_balance = 1";
+            $stmt = $con->prepare($stmt);
+            $stmt->execute();
+    
+            $moneyResult  = $stmt->get_result();
+            $money = $moneyResult->fetch_assoc(); 
+            $totalBalance = $money ? $money['total_balance'] : 0; // se nao tiver é zero
 
             $item['aprovados'] = $aprovados;
-
+            $item['totalBalance'] = $totalBalance;
+            var_dump($item);
 
             $conteudo = $template->render($item);
             echo $conteudo;
