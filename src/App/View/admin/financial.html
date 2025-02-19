@@ -62,18 +62,22 @@
     <script> // se eu fizer pelo script ele não carrega :/
         document.addEventListener("DOMContentLoaded", function() {
             let quantityInputs = document.querySelectorAll(".quantity_input");
-
+        
             quantityInputs.forEach(input => {
                 input.addEventListener("input", function() {
                     let row = this.closest("tr"); 
-                    let price = parseFloat(row.querySelector(".price_item").textContent.replace(",", ".")) || 0; 
+                    let priceText = row.querySelector(".price_item").textContent;
+        
+                    // Remove "R$" e converte para número corretamente
+                    let price = parseFloat(priceText.replace("R$", "").replace(",", ".").trim()) || 0; 
                     let quantity = parseFloat(this.value) || 0; 
                     let totalCost = price * quantity;
-
-                    row.querySelector(".total_price").textContent = `Custo: R$ ${totalCost.toFixed(2)}`;
+        
+                    row.querySelector(".total_price").textContent = `Custo: R$ ${totalCost.toFixed(2).replace(".", ",")}`;
                 });
             });
         });
+        
     </script>
     <script src="public/scripts/stock.js"></script>
 </body>
