@@ -279,5 +279,23 @@ class AdminController{
         }
         
     }
+    public function graphics(){
+        try {
+            $allTransactions = Stock::allTransactions();
+
+            $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/admin');
+            $twig = new \Twig\Environment($loader); 
+
+            $template = $twig->load('graphics.html'); 
+
+            $parametros = array(); 
+            $parametros['transactions'] = $allTransactions;
+
+            $conteudo = $template->render($parametros);
+            echo $conteudo;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
     
 }
