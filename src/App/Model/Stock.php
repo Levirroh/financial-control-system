@@ -275,12 +275,12 @@
                 $stmt->close();
         
                 // Fazer o "recibo"
-                $sql = "INSERT INTO company_transactions (type_transaction, amount, description) VALUES ('entrada', ?, 'Recarga de Estoque')";
+                $sql = "INSERT INTO company_transactions (type_transaction, amount, description, fk_item) VALUES ('entrada', ?, 'Recarga de Estoque', ?)";
                 $stmt = $con->prepare($sql);
                 if (!$stmt) {
                     throw new Exception("Erro ao preparar a consulta: " . $con->error);
                 }
-                $stmt->bind_param('i', $totalPrice);
+                $stmt->bind_param('ii', $totalPrice, $id_item);
                 $stmt->execute();
                 $stmt->close();
         
@@ -353,12 +353,12 @@
                 $stmt->execute();
                 $stmt->close();
         
-                $sql = "INSERT INTO company_transactions (type_transaction, amount, description) VALUES ('saída', ?, 'Venda de Item')";
+                $sql = "INSERT INTO company_transactions (type_transaction, amount, description, fk_item) VALUES ('saída', ?, 'Venda de Item', ?)";
                 $stmt = $con->prepare($sql);
                 if (!$stmt) {
                     throw new Exception("Erro ao preparar a consulta: " . $con->error);
                 }
-                $stmt->bind_param('d', $totalPrice);
+                $stmt->bind_param('di', $totalPrice, $id);
                 $stmt->execute();
                 $stmt->close();
         
@@ -379,4 +379,27 @@
                 throw new Exception("Erro ao vender o item: " . $e->getMessage());
             }
         }
+    public static function allTransactions(){
+        $con = Connection::getConn();
+
+        $sql = "SELECT COUNT(fk_item), fk_item FROM company_transactions INNER JOIN stock ON company_transactions.fk_item = stock.id_item GROUP BY fk_item"; // vai mostrar quantas vezes o item foi vendido e o fk do item
+        $sql = $con->prepare($sql);
+        $sql->execute();
+
+        $result = $sql->get_result();
+
+        $data = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row; 
+        }
+
+        var_dump($data);
+
+        if (!$data){
+            throw new Exception("Não foi encontrado nenhum usuário.");
+        } 
+    
+        return $data;
+    }
 }
