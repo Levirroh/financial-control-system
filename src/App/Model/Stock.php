@@ -249,6 +249,10 @@
 
             $con = Connection::getConn();
 
+            if (!$con) {
+                throw new Exception("Erro ao conectar ao banco de dados.");
+            }
+
             $item = $data['item'];
             $quantity = $data['quantity'];
             $id_item = $data['id_item'];
@@ -256,119 +260,123 @@
             $price = $data['price_item'];
             $totalPrice = $price * $quantity;
 
-            $sql = "UPDATE stock SET quantity_item = quantity_item + ? WHERE id_item = ?";
-            $sql = $con->prepare($sql);
-            if ($sql === false) {
-                die('Erro ao preparar a consulta: ' . $con->error);
-            }
-            $sql->bind_param('ii',$quantity, $id_item);
-
-            if ($sql->execute()) {
-
+            try {
+                // Iniciar transação
+                $con->begin_transaction();
+        
+                // Atualizar estoque
+                $sql = "UPDATE stock SET quantity_item = quantity_item + ? WHERE id_item = ?";
+                $stmt = $con->prepare($sql);
+                if (!$stmt) {
+                    throw new Exception("Erro ao preparar a consulta: " . $con->error);
+                }
+                $stmt->bind_param('ii', $quantity, $id_item);
+                $stmt->execute();
+                $stmt->close();
+        
+                // Fazer o "recibo"
                 $sql = "INSERT INTO company_transactions (type_transaction, amount, description) VALUES ('entrada', ?, 'Recarga de Estoque')";
-                $sql = $con->prepare($sql);
-
-                if ($sql === false) {
-                    die('Erro ao preparar a consulta: ' . $con->error);
+                $stmt = $con->prepare($sql);
+                if (!$stmt) {
+                    throw new Exception("Erro ao preparar a consulta: " . $con->error);
                 }
-                $sql->bind_param('i',$totalPrice);
-
-                if ($sql->execute()) {
-                    if ($sql->execute()) {
-
-                        $sql = "DELETE FROM requests WHERE fk_item = ?";
-                        $sql = $con->prepare($sql);
+                $stmt->bind_param('i', $totalPrice);
+                $stmt->execute();
+                $stmt->close();
         
-                        if ($sql === false) {
-                            die('Erro ao preparar a consulta: ' . $con->error);
-                        }
-                        $sql->bind_param('i',$id_item);
-        
-                        if ($sql->execute()) {
-                            if ($sql->execute()) {
-
-                                $sql = "UPDATE company_balance SET total_balance = total_balance - ? WHERE id_balance = 1";
-                                $sql = $con->prepare($sql);
-                
-                                if ($sql === false) {
-                                    die('Erro ao preparar a consulta: ' . $con->error);
-                                }
-                                $sql->bind_param('i',$totalPrice);
-                
-                                if ($sql->execute()) {
-                                    return true;
-                                } else {
-                                    die('Erro ao executar a consulta: ' . $sql->error);
-                                }
-                        } else {
-                            die('Erro ao executar a consulta: ' . $sql->error);
-                        }
-                    } else {
-                        die('Erro ao executar a consulta: ' . $sql->error);
-                    }
-                } else {
-                    die('Erro ao executar a consulta: ' . $sql->error);
+                // Remover as requisições do item
+                $sql = "DELETE FROM requests WHERE fk_item = ?";
+                $stmt = $con->prepare($sql);
+                if (!$stmt) {
+                    throw new Exception("Erro ao preparar a consulta: " . $con->error);
                 }
-            } else {
-                die('Erro ao executar a consulta: ' . $sql->error);
+                $stmt->bind_param('i', $id_item);
+                $stmt->execute();
+                $stmt->close();
+        
+                // atualizar monetário
+                $sql = "UPDATE company_balance SET total_balance = total_balance - ? WHERE id_balance = 1";
+                $stmt = $con->prepare($sql);
+                if (!$stmt) {
+                    throw new Exception("Erro ao preparar a consulta: " . $con->error);
+                }
+                $stmt->bind_param('i', $totalPrice);
+                $stmt->execute();
+                $stmt->close();
+        
+                $con->commit();
+        
+                return true;
+            } catch (Exception $e) {
+                $con->rollback();
+                throw new Exception("Erro na compra do item: " . $e->getMessage());
             }
             
         }
-    }
-    public static function sellitem($id){
-
-        $con = Connection::getConn();
-
-        $sql = "SELECT * FROM stock WHERE id_item = ?";
-        $sql = $con->prepare($sql);
-        $sql->bind_param('i', $id);
-        $sql->execute();
-        $result = $sql->get_result();
-
-        $infoItem = [];
-
-        while ($row = $result->fetch_assoc()) {
-            $infoItem = $row; 
-        }
-        $totalPrice = $infoItem['price_item'];
-
-        $sql = "UPDATE stock SET quantity_item = quantity_item - 1 WHERE id_item = ?";
-        $sql = $con->prepare($sql);
-        if ($sql === false) {
-            die('Erro ao preparar a consulta: ' . $con->error);
-        }
-        $sql->bind_param('i',$id);
-
-        if ($sql->execute()) {
-
-            $sql = "INSERT INTO company_transactions (type_transaction, amount, description) VALUES ('saída', ?, 'Venda de Item')";
-            $sql = $con->prepare($sql);
-
-            if ($sql === false) {
-                die('Erro ao preparar a consulta: ' . $con->error);
-            }
-            $sql->bind_param('s',$totalPrice);
-
-            if ($sql->execute()) {
-                $sql = "UPDATE company_balance SET total_balance = total_balance + ? WHERE id_balance = 1";
-                $sql = $con->prepare($sql);
-    
-                if ($sql === false) {
-                    die('Erro ao preparar a consulta: ' . $con->error);
-                }
-                $sql->bind_param('s',$totalPrice);
-    
-                if ($sql->execute()) {
-                    return true;
-                } else {
-                    die('Erro ao executar a consulta: ' . $sql->error);
-                }
-            } else {
-                die('Erro ao executar a consulta: ' . $sql->error);
-            }
-        } else {
-            die('Erro ao executar a consulta: ' . $sql->error);
-        }
+        public static function sellItem($id) {
+            $con = Connection::getConn();
         
-    }
+            if (!$con) {
+                throw new Exception("Erro ao conectar ao banco de dados.");
+            }
+        
+            try {
+                $con->begin_transaction();
+        
+                $sql = "SELECT price_item, quantity_item FROM stock WHERE id_item = ?";
+                $stmt = $con->prepare($sql);
+                if (!$stmt) {
+                    throw new Exception("Erro ao preparar a consulta: " . $con->error);
+                }
+                $stmt->bind_param('i', $id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $item = $result->fetch_assoc();
+                $stmt->close();
+        
+                if (!$item) {
+                    throw new Exception("Item não encontrado no estoque.");
+                }
+        
+                if ($item['quantity_item'] <= 0) {
+                    throw new Exception("Estoque insuficiente para venda.");
+                }
+        
+                $totalPrice = $item['price_item'];
+        
+                $sql = "UPDATE stock SET quantity_item = quantity_item - 1 WHERE id_item = ?";
+                $stmt = $con->prepare($sql);
+                if (!$stmt) {
+                    throw new Exception("Erro ao preparar a consulta: " . $con->error);
+                }
+                $stmt->bind_param('i', $id);
+                $stmt->execute();
+                $stmt->close();
+        
+                $sql = "INSERT INTO company_transactions (type_transaction, amount, description) VALUES ('saída', ?, 'Venda de Item')";
+                $stmt = $con->prepare($sql);
+                if (!$stmt) {
+                    throw new Exception("Erro ao preparar a consulta: " . $con->error);
+                }
+                $stmt->bind_param('d', $totalPrice);
+                $stmt->execute();
+                $stmt->close();
+        
+                $sql = "UPDATE company_balance SET total_balance = total_balance + ? WHERE id_balance = 1";
+                $stmt = $con->prepare($sql);
+                if (!$stmt) {
+                    throw new Exception("Erro ao preparar a consulta: " . $con->error);
+                }
+                $stmt->bind_param('d', $totalPrice);
+                $stmt->execute();
+                $stmt->close();
+        
+                $con->commit();
+        
+                return true;
+            } catch (Exception $e) {
+                $con->rollback();
+                throw new Exception("Erro ao vender o item: " . $e->getMessage());
+            }
+        }
 }
