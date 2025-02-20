@@ -57,6 +57,9 @@
             } else if($uri[0] === 'sales'){
                 $controller = 'AdminController';
                 $method = 'sales';
+            } else if($uri[0] === 'graphics'){
+                $controller = 'AdminController';
+                $method = 'graphics';
             } else{
                 $method = 'index';
             }
