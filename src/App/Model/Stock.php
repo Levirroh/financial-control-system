@@ -265,7 +265,7 @@
 
             if ($sql->execute()) {
 
-                $sql = "INSERT INTO company_transactions (type_transaction, amount, description) VALUES ('saída', ?, 'Recarga de Estoque')";
+                $sql = "INSERT INTO company_transactions (type_transaction, amount, description) VALUES ('entrada', ?, 'Recarga de Estoque')";
                 $sql = $con->prepare($sql);
 
                 if ($sql === false) {
@@ -314,5 +314,61 @@
             }
             
         }
+    }
+    public static function sellitem($id){
+
+        $con = Connection::getConn();
+
+        $sql = "SELECT * FROM stock WHERE id_item = ?";
+        $sql = $con->prepare($sql);
+        $sql->bind_param('i', $id);
+        $sql->execute();
+        $result = $sql->get_result();
+
+        $infoItem = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $infoItem = $row; 
+        }
+        $totalPrice = $infoItem['price_item'];
+
+        $sql = "UPDATE stock SET quantity_item = quantity_item - 1 WHERE id_item = ?";
+        $sql = $con->prepare($sql);
+        if ($sql === false) {
+            die('Erro ao preparar a consulta: ' . $con->error);
+        }
+        $sql->bind_param('i',$id);
+
+        if ($sql->execute()) {
+
+            $sql = "INSERT INTO company_transactions (type_transaction, amount, description) VALUES ('saída', ?, 'Venda de Item')";
+            $sql = $con->prepare($sql);
+
+            if ($sql === false) {
+                die('Erro ao preparar a consulta: ' . $con->error);
+            }
+            $sql->bind_param('s',$totalPrice);
+
+            if ($sql->execute()) {
+                $sql = "UPDATE company_balance SET total_balance = total_balance + ? WHERE id_balance = 1";
+                $sql = $con->prepare($sql);
+    
+                if ($sql === false) {
+                    die('Erro ao preparar a consulta: ' . $con->error);
+                }
+                $sql->bind_param('s',$totalPrice);
+    
+                if ($sql->execute()) {
+                    return true;
+                } else {
+                    die('Erro ao executar a consulta: ' . $sql->error);
+                }
+            } else {
+                die('Erro ao executar a consulta: ' . $sql->error);
+            }
+        } else {
+            die('Erro ao executar a consulta: ' . $sql->error);
+        }
+        
     }
 }
