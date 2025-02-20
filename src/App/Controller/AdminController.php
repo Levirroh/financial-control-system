@@ -262,5 +262,22 @@ class AdminController{
         }
         
     }
+    public function sell_item(){
+        
+        $url = $_GET['url'];
+
+        $uri = explode('/', $url);
+
+        $id = $uri[2];
+
+        $accept = Stock::sellItem($id);
+
+        if ($accept === true) {
+            header('Location: /financial-control-system/sales');
+        } else{
+            echo "algo deu errado!";
+        }
+        
+    }
     
 }
