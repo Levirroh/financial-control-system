@@ -187,6 +187,31 @@ class AdminController{
             echo $e->getMessage();
         }
     }
+    public function sales(){
+        $con = Connection::getConn();
+        try {
+            $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/admin');
+            $twig = new \Twig\Environment($loader); 
+
+            $template = $twig->load('sales.html'); 
+
+            $item['item'] = Stock::selectAll();
+            $stmt =  "SELECT total_balance FROM company_balance WHERE id_balance = 1";
+            $stmt = $con->prepare($stmt);
+            $stmt->execute();
+    
+            $moneyResult  = $stmt->get_result();
+            $money = $moneyResult->fetch_assoc(); 
+            $totalBalance = $money ? $money['total_balance'] : 0; // se nao tiver é zero
+
+            $item['totalBalance'] = $totalBalance;
+
+            $conteudo = $template->render($item);
+            echo $conteudo;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
     public function requests(){
         try {
             $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/admin');

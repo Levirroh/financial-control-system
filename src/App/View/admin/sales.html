@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/styles/styles.css">
+    <title>Estoque</title>
+</head>
+<body>
+    <section id="sec-stock">
+        <div id="div-stock">
+            <div class="options-row-jc">
+                <a href="admin">Voltar</a>
+                <a href="add_item">Adicionar item.</a>
+                <p>Monetário: {{totalBalance}}</p>
+            </div>
+            <h1>Estoque</h1>
+            <table>
+                <tr>
+                    <th>Id:</th>
+                    <th>Nome:</th>
+                    <th>Código:</th>
+                    <th>Preço:</th>
+                    <th>Oferta:</th>
+                    <th>Categoria:</th>
+                    <th>Ações:</th>
+                    <th>Qtd:</th>
+                </tr>
+                {% for item in item %}
+                    <tr>
+                        <th>{{item.id_item}}</th>
+                        <th>{{item.name_item}}</th>
+                        <th>{{item.code_item}}</th>
+                        <th>{{item.price_item}}</th>
+                        <th>{{item.sale_item}}</th>
+                        <th>{{item.category_item}}</th>
+                        <th><a href="admin/sell_item/{{item.id_item}}">Vender</a></th>
+                        <th>{{item.quantity_item}}</th>
+                    </tr>
+                {% endfor %} 
+            </table>
+        </div>  
+    </section>
+</body>
+</html>

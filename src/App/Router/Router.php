@@ -54,6 +54,9 @@
             } else if($uri[0] === 'user_request'){
                 $controller = 'HomeController';
                 $method = 'user_request';
+            } else if($uri[0] === 'sales'){
+                $controller = 'AdminController';
+                $method = 'sales';
             } else{
                 $method = 'index';
             }
