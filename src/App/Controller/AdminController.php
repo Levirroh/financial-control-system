@@ -281,7 +281,13 @@ class AdminController{
     }
     public function graphics(){
         try {
-            $data = Stock::allTransactions();
+            $data = [
+                
+                'transactions' => Stock::allTransactions(),
+                'income' => Stock::entryTransactions(),
+                'outcome' => Stock::outTransactions(),
+
+            ];
 
             $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/admin');
             $twig = new \Twig\Environment($loader); 
@@ -294,5 +300,7 @@ class AdminController{
             echo $e->getMessage();
         }
     }
+
+
     
 }
