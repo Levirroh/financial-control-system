@@ -281,17 +281,14 @@ class AdminController{
     }
     public function graphics(){
         try {
-            $allTransactions = Stock::allTransactions();
+            $data = Stock::allTransactions();
 
             $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/admin');
             $twig = new \Twig\Environment($loader); 
 
-            $template = $twig->load('graphics.html'); 
+            $template = $twig->load('graphics.php'); 
 
-            $parametros = array(); 
-            $parametros['transactions'] = $allTransactions;
-
-            $conteudo = $template->render($parametros);
+            $conteudo = $template->render(['data' => json_encode($data)]);
             echo $conteudo;
         } catch (Exception $e) {
             echo $e->getMessage();
