@@ -382,7 +382,7 @@
     public static function allTransactions(){
         $con = Connection::getConn();
 
-        $sql = "SELECT COUNT(fk_item), fk_item FROM company_transactions INNER JOIN stock ON company_transactions.fk_item = stock.id_item GROUP BY fk_item"; // vai mostrar quantas vezes o item foi vendido e o fk do item
+        $sql = "SELECT COUNT(fk_item), name_item FROM company_transactions INNER JOIN stock ON company_transactions.fk_item = stock.id_item GROUP BY fk_item"; // vai mostrar quantas vezes o item foi vendido e o fk do item
         $sql = $con->prepare($sql);
         $sql->execute();
 
@@ -394,7 +394,47 @@
             $data[] = $row; 
         }
 
-        var_dump($data);
+        if (!$data){
+            throw new Exception("Não foi encontrado nenhum usuário.");
+        } 
+    
+        return $data;
+    }
+    public static function entryTransactions(){
+        $con = Connection::getConn();
+
+        $sql = "SELECT amount, date_transaction FROM company_transactions WHERE type_transaction = 'Entrada'"; // vai mostrar quantas vezes o item foi vendido e o fk do item
+        $sql = $con->prepare($sql);
+        $sql->execute();
+
+        $result = $sql->get_result();
+
+        $data = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row; 
+        }
+
+        if (!$data){
+            throw new Exception("Não foi encontrado nenhum usuário.");
+        } 
+    
+        return $data;
+    }
+    public static function outTransactions(){
+        $con = Connection::getConn();
+
+        $sql = "SELECT amount, date_transaction FROM company_transactions WHERE type_transaction = 'Saída'"; // vai mostrar quantas vezes o item foi vendido e o fk do item
+        $sql = $con->prepare($sql);
+        $sql->execute();
+
+        $result = $sql->get_result();
+
+        $data = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row; 
+        }
 
         if (!$data){
             throw new Exception("Não foi encontrado nenhum usuário.");
