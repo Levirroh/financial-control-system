@@ -403,7 +403,11 @@
     public static function entryTransactions(){
         $con = Connection::getConn();
 
-        $sql = "SELECT amount, date_transaction FROM company_transactions WHERE type_transaction = 'Entrada'"; // vai mostrar quantas vezes o item foi vendido e o fk do item
+        $sql = "SELECT SUM(amount) AS total_amount, DATE(date_transaction) AS transaction_date 
+        FROM company_transactions 
+        WHERE type_transaction = 'Entrada' 
+        GROUP BY DATE(date_transaction) 
+        ORDER BY transaction_date ASC"; // vai mostrar quantas vezes o item foi vendido e o fk do item
         $sql = $con->prepare($sql);
         $sql->execute();
 
@@ -424,7 +428,11 @@
     public static function outTransactions(){
         $con = Connection::getConn();
 
-        $sql = "SELECT amount, date_transaction FROM company_transactions WHERE type_transaction = 'Saída'"; // vai mostrar quantas vezes o item foi vendido e o fk do item
+        $sql = "SELECT SUM(amount) AS total_amount, DATE(date_transaction) AS transaction_date 
+        FROM company_transactions 
+        WHERE type_transaction = 'Saída' 
+        GROUP BY DATE(date_transaction) 
+        ORDER BY transaction_date ASC"; 
         $sql = $con->prepare($sql);
         $sql->execute();
 
