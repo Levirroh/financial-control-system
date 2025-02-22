@@ -213,20 +213,19 @@ class AdminController{
         }
     }
     public function requests(){
-        try {
-            $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/admin');
-            $twig = new \Twig\Environment($loader); 
+        $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/admin');
+        $twig = new \Twig\Environment($loader); 
 
-            $template = $twig->load('requests.html'); 
-            
-            $user['users'] = Stock::selectRequests();
+        $template = $twig->load('requests.html'); 
+        
+        $user['users'] = Stock::selectRequests();
 
-
+        if (!$user['users']){
+            $conteudo = $template;
+        } else{
             $conteudo = $template->render($user);
-            echo $conteudo;
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
+        }   
+        echo $conteudo->render();
     }
     public function accept_request(){
         
