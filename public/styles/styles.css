@@ -5,8 +5,8 @@
 }
 
 body{
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
 }
 
 button:hover{
@@ -33,6 +33,7 @@ a{
     height: max-content;
     padding: 10px;
     box-shadow: 4px 4px 5px 0px;
+    margin-top: 2%;
 }
 
 .button-blue{
@@ -149,10 +150,10 @@ a{
     height: 100%;
     width: 100%;
     background-color: rgb(132, 170, 219);
-    padding: 10px;
 }
 
 #div-menu{
+    margin-top: 2%;
     border-radius: 10px;
     background-color: #f3f2f7;
     padding: 20px;
@@ -180,15 +181,14 @@ a{
     align-items: center;
     flex-direction: column;
     height: 100%;
-    width: 100%;
+    width: 90%;
     background-color: rgb(132, 170, 219);
-    padding: 10px;
+    padding: 0% 5% 0% 5%;
 }
 
 #div-stock{
     border-radius: 10px;
     background-color: #f3f2f7;
-    padding: 20px;
     height: max-content;
     gap: 20px;
     display: flex;
@@ -196,8 +196,8 @@ a{
     width: max-content;
     text-align: center;
     box-shadow: 4px 4px 5px 0px;
-    padding: 25px 25px 20px 25px;
-
+    padding: 25px;
+    margin-top: 2%;
 }
 
 table{
@@ -232,3 +232,4 @@ th{
     justify-content: space-between;
     width: 100%;
 }
+
