@@ -6,7 +6,7 @@
         private $password_user;
         protected $name_user;
         protected $email_user;
-        protected $func_user;
+        protected $type_user;
 
         public function register($info){
 
@@ -18,11 +18,11 @@
             $name_user = $info['name'];
             $email_user = $info['email'];
             $password_user = $info['password']; 
-            $function_user = $info['function'];
+            $function_user = $info['type'];
             $isAdmin = (int) $info['admin']; // transforma o bool em int, pra ser inserido no BD
 
             $query = "INSERT INTO users
-            (name_user, email_user, password_user, function_user, isAdmin)
+            (name_user, email_user, password_user, type_user, isAdmin)
             VALUES
             (?, ?, ?, ?, ?)";
 
