@@ -287,6 +287,9 @@ class AdminController{
                 'outcome' => Stock::outTransactions(),
 
             ];
+            if ($data['transactions'] == null AND $data['income'] == null AND $data['outcome'] == null){
+                $data = false;
+            }
 
             $loader = new \Twig\Loader\FilesystemLoader('../src/App/View/admin');
             $twig = new \Twig\Environment($loader); 
