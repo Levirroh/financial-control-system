@@ -189,7 +189,7 @@
             }
 
             if (!$data){
-                throw new Exception("Não foi encontrado nenhum pedido.");
+                return false;
             } 
         
             return $data;
