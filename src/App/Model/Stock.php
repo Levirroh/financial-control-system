@@ -393,10 +393,6 @@
         while ($row = $result->fetch_assoc()) {
             $data[] = $row; 
         }
-
-        if (!$data){
-            throw new Exception("Não foi encontrado nenhum usuário.");
-        } 
     
         return $data;
     }
@@ -418,10 +414,6 @@
         while ($row = $result->fetch_assoc()) {
             $data[] = $row; 
         }
-
-        if (!$data){
-            throw new Exception("Não foi encontrado nenhum usuário.");
-        } 
     
         return $data;
     }
@@ -443,10 +435,6 @@
         while ($row = $result->fetch_assoc()) {
             $data[] = $row; 
         }
-
-        if (!$data){
-            throw new Exception("Não foi encontrado nenhum usuário.");
-        } 
     
         return $data;
     }
