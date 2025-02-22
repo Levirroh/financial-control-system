@@ -21,7 +21,7 @@ submitButton.addEventListener('click', (event) => {
                 name: formData.name,
                 email: formData.email,
                 password: formData.password,
-                function: formData.function,
+                type: formData.type,
                 admin: select
             })
         })
