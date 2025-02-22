@@ -93,17 +93,17 @@
       chart.draw(data, options);
     }
     </script>
+    <link rel="stylesheet" href="public/styles/styles.css">
   </head>
 
-  <body>
-    <a href='/financial-control-system/financial'>Voltar</a>
-
-    <?php if (!$data): ?>
-        <h1>Não há dados suficientes para gerar os gráficos.</h1>
-    <?php else: ?>
-        <div id='chart_transactions' class='chart-container'></div>
-        <div id='chart_income_outcome' class='chart-container'></div>
-    <?php endif; ?>
+<body>
+  <section id="sec-menu">
+    <div id="div-menu" class="two-items">
+      <a href='/financial-control-system/financial'>Voltar</a>
+      <div id='chart_transactions' class='chart-container'></div>
+      <div id='chart_income_outcome' class='chart-container'></div>
+    </div>
+  </section>
 </body>
 
 </html>
