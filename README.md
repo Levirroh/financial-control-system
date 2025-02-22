@@ -27,3 +27,5 @@ Este projeto tem como objetivo criar um **Sistema de Gerenciamento Financeiro** 
 
 ---
 📢 *Este projeto está em fase inicial de desenvolvimento. Sugestões e contribuições são bem-vindas!*
+
+*obs: estamos ciente do problema com outcome e income na tela de gráficos e isto será corrigido em brave!*
