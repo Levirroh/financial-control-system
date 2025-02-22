@@ -156,7 +156,7 @@ class AuthController{
         $registerSuccess = $stock->request_item($data);
 
         if ($registerSuccess) {
-            header('Location: /financial-control-system/menu');
+            header('Location: /financial-control-system/stock');
         } else {
              echo json_encode(['success' => false, 'message' => 'Erro ao adicionar item']);
         }
