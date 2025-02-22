@@ -15,6 +15,7 @@
                 <p>Monetário: {{totalBalance}}</p>
             </div>
         <h1>Pedidos</h1>
+        {% if items %}
             <table border="2">
                 <tr>
                     <th>Autor:</th>
@@ -56,6 +57,13 @@
                     </tr>
                 {% endfor %} 
             </table>
+        {% else %}
+            <table>
+                <tr>
+                    <th>Nenhum pedido aprovado encontrado!</th>
+                </tr>
+            </table>
+        {% endif %}
         </div>  
     </section>
 
