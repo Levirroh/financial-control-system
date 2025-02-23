@@ -17,13 +17,13 @@ Este projeto tem como objetivo criar um **Sistema de Gerenciamento Financeiro** 
   - O sistema incluirá um dinheiro simulado para verificar a viabilidade das compras. ✅ 
 - 🔐 **Autenticação de Usuários**
   - Apenas usuários autenticados podem acessar o sistema. 
-  - Caso contrário estarão em uma página de compras de itens, simulando um ambiente real.
 
 
 ### 🔮 Planejamento Futuro
 - 📧 **Notificação via E-mail**
-  - Envio automático de e-mails para o responsável financeiro ao  solicitar compras. 
-  - O responsável financeiro poderá aprovar ou negar a compra e notificar o solicitante. 
+  - Envio automático de notificações para o responsável financeiro ao  solicitar compras. (página de requests) ✅
+  - O responsável financeiro poderá aprovar ou negar a compra e notificar o solicitante. ✅
+  - Quem solicitar poderá ver se foi aceito ou não. ✅
 
 ---
 📢 *Este projeto está em fase inicial de desenvolvimento. Sugestões e contribuições são bem-vindas!*
