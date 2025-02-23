@@ -40,8 +40,8 @@
       function drawIncomeOutcomeChart(income, outcome) {
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Data');
-      data.addColumn('number', 'Entradas (Income)');
       data.addColumn('number', 'Saídas (Outcome)');
+      data.addColumn('number', 'Entradas (Income)');
 
       var transactions = {};
 
@@ -79,13 +79,13 @@
       });
 
       var options = {
-        title: 'Entradas vs. Saídas por Dia',
+        title: 'Saídas e Entradas por Dia',
         legend: { position: 'bottom' },
         width: 600,
         height: 400,
         hAxis: { title: 'Data', slantedText: true, slantedTextAngle: 45 },
         vAxis: { title: 'Valor (R$)' },
-        colors: ['#28a745', '#dc3545'],
+        colors: ['#dc3545', '#28a745'],
         bar: { groupWidth: '50%' },
       };
 
