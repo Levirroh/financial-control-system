@@ -220,12 +220,11 @@ class AdminController{
         
         $user['users'] = Stock::selectRequests();
 
-        if (!$user['users']){
-            $conteudo = $template;
-        } else{
-            $conteudo = $template->render($user);
-        }   
-        echo $conteudo->render();
+        $conteudo = $template;
+    
+        $conteudo = $template->render($user);
+           
+        echo $conteudo;
     }
     public function accept_request(){
         
