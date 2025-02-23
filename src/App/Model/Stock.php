@@ -379,7 +379,7 @@
     public static function allTransactions(){
         $con = Connection::getConn();
 
-        $sql = "SELECT COUNT(fk_item), name_item FROM company_transactions INNER JOIN stock ON company_transactions.fk_item = stock.id_item GROUP BY fk_item"; // vai mostrar quantas vezes o item foi vendido e o fk do item
+        $sql = "SELECT COUNT(fk_item), name_item FROM company_transactions INNER JOIN stock ON company_transactions.fk_item = stock.id_item GROUP BY fk_item HAVING COUNT(fk_item) >= 2"; // vai mostrar quantas vezes o item foi vendido e o fk do item
         $sql = $con->prepare($sql);
         $sql->execute();
 
