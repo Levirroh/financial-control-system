@@ -13,19 +13,17 @@
         {% if users %}
             <table border="2">
                 <tr>
-                    <th>Id do pedido:</th>
-                    <th>Criador do pedido:</th>
+                    <th>Id:</th>
                     <th>Item:</th>
                     <th>Código:</th>
                     <th>Categoria:</th>
-                    <th>Quantidade:</th>
+                    <th>Qtd:</th>
                     <th>Status:</th>
                     <th>Ações:</th>
                 </tr>
                 {% for user in users %}
                     <tr>
                         <th>{{user.id_request}}</th>
-                        <th>{{user.name_user}}</th>
                         <th>{{user.name_item}}</th>
                         <th>{{user.code_item}}</th>
                         <th>{{user.category_item}}</th>
