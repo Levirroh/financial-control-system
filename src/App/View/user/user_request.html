@@ -10,6 +10,7 @@
         <div id="div-stock">
         <a href="menu">Voltar</a>
         <h1>Seus pedidos</h1>
+        {% if user %}
             <table border="2">
                 <tr>
                     <th>Id do pedido:</th>
@@ -34,6 +35,13 @@
                     </tr>
                 {% endfor %} 
             </table>
+        {% else %}
+        <table>
+            <tr>
+                <th>Você não fez nenhum pedido!</th>
+            </tr>
+        </table>
+        {% endif %}
         </div>  
     </section>
 </body>
