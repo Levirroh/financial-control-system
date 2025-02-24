@@ -60,14 +60,15 @@ submitButton.addEventListener('click', (event) => {
         .then(data => {
             if(data.success){
                 window.location = data.redirect;
-            } else {
-                console.log(data.message);
+            } else{
+                document.querySelector('.errorPass').innerHTML = data.message;
+                document.querySelector('.errorUser').innerHTML = "";
             }
         })
         .catch(error => {
-            console.log('Erro na requisição: ', error);
+            document.querySelector('.errorUser').innerHTML = "Usuário não cadastrado";
+            document.querySelector('.errorPass').innerHTML = "";
         })
-        
     } 
     if (buttonValue == 'Cadastrar Funcionário'){
         let inputs = document.querySelectorAll('.input');
