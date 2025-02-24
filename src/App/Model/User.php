@@ -34,6 +34,20 @@
     
             $statement->bind_param('ssssi', $name_user, $email_user, $password_user, $function_user, $isAdmin);
     
+            $sql = "SELECT * FROM users WHERE email_user = ?";
+            $sql = $conn->prepare($sql);
+            $sql->bind_param('s', $name_user);
+            $sql->execute();
+
+            if ($sql->get_result()->num_rows > 0){
+                echo json_encode([
+                    'success' => false,
+                    'type' => 'text',
+                    'message' => 'Usuário já cadastrado'
+                ]);
+                return false;
+            }
+
             if ($statement->execute()) {
                 return true;
             } else {
@@ -54,7 +68,7 @@
 
             
 
-            $query = "SELECT * FROM users WHERE name_user = ?";
+            $query = "SELECT * FROM users WHERE email_user = ?";
 
             $statement = $conn->prepare($query);
 
