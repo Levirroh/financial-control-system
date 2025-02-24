@@ -8,11 +8,13 @@
                 $url['url'] = 'Error';
             }
 
+            $admin = $_SESSION['isAdmin'];
+
             $uri = explode('/', $url['url']);
 
             $controller = ucfirst($uri[0]) . 'Controller'; 
 
-            if($uri[0] === '' || $uri[0] === 'Home'){
+            if($uri[0] === '' || $uri[0] === 'Home' || $uri[0] === 'home'){
                 $controller = 'HomeController';
                 $method = 'index';
             } else if($uri[0] === 'menu'){
@@ -27,19 +29,19 @@
             } else if($uri[0] === 'auth'){
                 $controller = 'AuthController';
                 $method = $uri[1] ?? 'index';
-            } else if($uri[0] === 'financial'){
+            } else if($uri[0] === 'financial' && $admin === 1){
                 $controller = 'AdminController';
                 $method = 'financial';
-            } else if($uri[0] === 'employees'){
+            } else if($uri[0] === 'employees' && $admin === 1){
                 $controller = 'AdminController';
                 $method = 'employees';
-            } else if($uri[0] === 'requests'){
+            } else if($uri[0] === 'requests' && $admin === 1){
                 $controller = 'AdminController';
                 $method = 'requests';
-            } else if($uri[0] === 'stock_admin'){
+            } else if($uri[0] === 'stock_admin' && $admin === 1){
                 $controller = 'AdminController';
                 $method = 'stock';
-            } else if($uri[0] === 'create_employee'){
+            } else if($uri[0] === 'create_employee' && $admin === 1){
                 $controller = 'AdminController';
                 $method = 'create_employee';
             } else if($uri[0] === 'stock'){
@@ -48,19 +50,23 @@
             } else if($uri[0] === 'request'){
                 $controller = 'HomeController';
                 $method = 'request';
-            } else if($uri[0] === 'add_item'){
+            } else if($uri[0] === 'add_item' && $admin === 1){
                 $controller = 'AdminController';
                 $method = 'add_item';
             } else if($uri[0] === 'user_request'){
                 $controller = 'HomeController';
                 $method = 'user_request';
-            } else if($uri[0] === 'sales'){
+            } else if($uri[0] === 'sales' && $admin === 1){
                 $controller = 'AdminController';
                 $method = 'sales';
-            } else if($uri[0] === 'graphics'){
+            } else if($uri[0] === 'graphics' && $admin === 1){
                 $controller = 'AdminController';
                 $method = 'graphics';
+            } else if($uri[0] === 'admin' && $admin === 1){
+                $controller = 'AdminController';
+                $method = 'index';
             } else{
+                $controller = 'ErrorController';
                 $method = 'index';
             }
 
