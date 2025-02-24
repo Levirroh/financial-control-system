@@ -5,12 +5,27 @@ submitButton.addEventListener('click', (event) => {
     event.preventDefault(); // impede de recarregar a página antes de fazer todas as ações do JS.
     if (buttonValue === 'Cadastrar'){
         let inputs = document.querySelectorAll('.input');
-        let select = document.querySelector('#select').value;
+        let selectAdmin = document.querySelector('#selectAdmin').value;
+        let selectType = document.querySelector('#selectType').value;
 
         let formData = {}; 
         inputs.forEach(input => {
             formData[input.name] = input.value;            
         })
+
+        if (formData.name === "" || formData.email === "" || formData.password === "" || formData.type === "") {
+            document.querySelector('.errorAuth').innerHTML = "Preencha todos os campos";
+            return;
+        }
+        if (formData.password.length < 6 || !/[!@#\$%\^&\*\(\)_\+]/.test(formData.password)) {
+            document.querySelector('.errorAuth').innerHTML = "A senha deve conter pelo menos 1 caractere especial e ter no mínimo 6 caracteres";
+            return;
+        }
+        if (!formData.email.includes('@')|| !formData.email
+        .includes('.')) {
+            document.querySelector('.errorAuth').innerHTML = "Email inválido, deve conter o domínio do email e o @";
+            return;
+        }
 
         fetch(`auth/create`, {
             method: 'POST',
@@ -21,8 +36,8 @@ submitButton.addEventListener('click', (event) => {
                 name: formData.name,
                 email: formData.email,
                 password: formData.password,
-                type: formData.type,
-                admin: select
+                type: selectType,
+                admin: selectAdmin
             })
         })
         .then(response => response.json())
@@ -34,7 +49,7 @@ submitButton.addEventListener('click', (event) => {
             }
         })
         .catch(error => {
-            console.log('Erro na requisição: ', error);
+            document.querySelector('.errorAuth').innerHTML = "Email já cadastrado";
         })
         
     }
