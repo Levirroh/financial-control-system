@@ -43,6 +43,8 @@ CREATE TABLE company_transactions (
     date_transaction TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+/* PRE-MADE INSERTS
+
 INSERT INTO users (name_user, password_user, email_user, isAdmin, type_user) VALUES ("admin", "admin", "admin@admin", 1, "Funcionário");
 INSERT INTO users (name_user, password_user, email_user, isAdmin, type_user) VALUES ("user", "user", "user@user", 0, "Funcionário");
 
