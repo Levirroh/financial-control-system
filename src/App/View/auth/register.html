@@ -10,16 +10,20 @@
         <div id="div-main">
             <h1>Seja bem-vindo! Crie a sua conta</h1>
             <form method="POST" id="form-login">
+                <p class="errorAuth"></p>
                 <p>Insira seu nome</p>
                 <input type="text" name="name" class="input input_login" autocomplete="off">
                 <p>Insira seu email</p>
                 <input type="text" name="email" class="input input_login" autocomplete="off">
                 <p>Insira sua senha</p>
                 <input type="text" name="password" class="input input_login" autocomplete="off">
-                <p>Insira sua função</p>
-                <input type="text" name="type" class="input input_login" autocomplete="off">
+                <p>Insira seu tipo de usuário</p>
+                <select name="t ype" id="selectType">
+                    <option name="0" value="Usuário" selected>Usuário</option>
+                    <option name="1" value="Funcionário">Funcionário</option>
+                </select>
                 <p>Você é um ADMIN?</p>
-                <select name="admin" id="select">
+                <select name="admin" id="selectAdmin">
                     <option name="0" value="0" selected>NÃO</option>
                     <option name="1" value="1">SIM</option>
                 </select>
